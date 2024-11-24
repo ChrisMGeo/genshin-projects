@@ -1,0 +1,3 @@
+[submodule "packages/gi-data/AnimeGameData"]
+	path = packages/gi-data/AnimeGameData
+	url = https://gitlab.com/Dimbreath/AnimeGameData.git
