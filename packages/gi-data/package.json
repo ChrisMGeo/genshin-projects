@@ -6,6 +6,10 @@
     "build": "tsc"
   },
   "exports": {
+    "./textmaps": {
+      "types": "./src/textmaps.ts",
+      "default": "./dist/textmaps.js"
+    }
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
