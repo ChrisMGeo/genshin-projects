@@ -76,11 +76,35 @@ const removeIrrelevant: PlopTypes.CustomActionFunction = async (answers) => {
   return "Removed irrelevant types!";
 };
 
+const findTextMapReference: PlopTypes.CustomActionFunction = async (
+  _answers
+) => {
+  const answers = _answers as { in: string };
+  return `Found references to ${JSON.stringify(answers.in)}!`;
+};
+
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  // A simple generator to add a new React component to the internal UI library
   plop.setGenerator("gi-data-types", {
     description: "Generates types for `AnimeGameData/ExcelBinOutput/*.json`",
     prompts: [],
-    actions: [generateGIDataTypes, removeIrrelevant],
+    actions: [generateGIDataTypes],
+  });
+
+  plop.setGenerator("remove-unused-gi-data-types", {
+    description: "Removes unused types from `packages/gi-data/src/generated/`",
+    prompts: [],
+    actions: [removeIrrelevant],
+  });
+
+  plop.setGenerator("find-textmap-references", {
+    description: "Helper action to find instances of a string",
+    prompts: [
+      {
+        type: "input",
+        name: "in",
+        message: "What is the string you are searching for?",
+      },
+    ],
+    actions: [findTextMapReference],
   });
 }
