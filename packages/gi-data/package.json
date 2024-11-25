@@ -1,6 +1,5 @@
 {
   "name": "@repo/gi-data",
-  "type": "module",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc"
@@ -13,6 +12,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@turbo/gen": "^1.12.4",
     "typescript": "latest"
   }
 }
