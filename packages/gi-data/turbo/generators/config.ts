@@ -2,7 +2,6 @@ import type { PlopTypes } from "@turbo/gen";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import JsonToTS from "json-to-ts";
-import { pascalCaseToKebabCase } from "@repo/utils/pascal-to-kebab";
 
 const REPO_ROOT = path.resolve(".", "packages", "gi-data");
 
@@ -64,7 +63,7 @@ const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
       "src",
       "generated",
       "excel-bin-output",
-      `${pascalCaseToKebabCase(typeName)}.ts`
+      `${typeName.replace(/([a-z0–9])([A-Z])/g, "$1-$2").toLowerCase()}.ts`
     );
     writeFileSync(typeFileLocation, typeFileContent);
     console.log(`Write to "${typeFileLocation} was successful..."`);
