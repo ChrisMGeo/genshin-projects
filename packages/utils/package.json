@@ -13,6 +13,10 @@
     "./pascalize": {
         "types": "./src/pascalize.ts",
         "default": "./dist/pascalize.js"
+    },
+    "./pascal-to-kebab.ts": {
+      "types": "./src/pascal-to-kebab.ts",
+      "default": "./dist/pascal-to-kebab.js"
     }
   },
   "devDependencies": {
