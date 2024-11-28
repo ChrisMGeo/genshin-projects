@@ -1,5 +1,6 @@
 {
   "name": "@repo/gi-data",
+  "type": "module",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc"
@@ -9,6 +10,9 @@
       "types": "./src/textmaps.ts",
       "default": "./dist/textmaps.js"
     }
+  },
+  "dependencies": {
+    "@repo/utils": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
