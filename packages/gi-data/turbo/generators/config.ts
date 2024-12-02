@@ -24,6 +24,7 @@ const getParsedEBOFile = (fileName: string) => {
 // Learn more about Turborepo Generators at https://turbo.build/repo/docs/core-concepts/monorepos/code-generation
 
 const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
+  const { pascalCaseToKebabCase } = await import("@repo/utils/pascal-to-kebab");
   let EBOJsonFiles: string[] = [];
   try {
     EBOJsonFiles = readdirSync(EBO).filter((f) => path.extname(f) === ".json");
@@ -63,7 +64,7 @@ const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
       "src",
       "generated",
       "excel-bin-output",
-      `${typeName.replace(/([a-z0–9])([A-Z])/g, "$1-$2").toLowerCase()}.ts`
+      `${pascalCaseToKebabCase(typeName)}.ts`
     );
     writeFileSync(typeFileLocation, typeFileContent);
     console.log(`Write to "${typeFileLocation} was successful..."`);
