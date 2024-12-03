@@ -1,22 +1,22 @@
-import AvatarCodex from "./generated/excel-bin-output/avatar-codex.js";
-import AvatarTalent from "./generated/excel-bin-output/avatar-talent.js";
-import Avatar from "./generated/excel-bin-output/avatar.js";
-import AvatarCurve from "./generated/excel-bin-output/avatar-curve.js";
-import AvatarSkill from "./generated/excel-bin-output/avatar-skill.js";
-import AvatarSkillDepot from "./generated/excel-bin-output/avatar-skill-depot.js";
-import FetterInfo from "./generated/excel-bin-output/fetter-info.js";
-import FetterCharacterCard from "./generated/excel-bin-output/fetter-character-card.js";
-import Reward from "./generated/excel-bin-output/reward.js";
-import Material from "./generated/excel-bin-output/material.js";
-import ProudSkill from "./generated/excel-bin-output/proud-skill.js";
-import { giTextMaps } from "./textmaps.js";
+import AvatarCodex from "../generated/excel-bin-output/avatar-codex.js";
+import AvatarTalent from "../generated/excel-bin-output/avatar-talent.js";
+import Avatar from "../generated/excel-bin-output/avatar.js";
+import AvatarCurve from "../generated/excel-bin-output/avatar-curve.js";
+import AvatarSkill from "../generated/excel-bin-output/avatar-skill.js";
+import AvatarSkillDepot from "../generated/excel-bin-output/avatar-skill-depot.js";
+import FetterInfo from "../generated/excel-bin-output/fetter-info.js";
+import FetterCharacterCard from "../generated/excel-bin-output/fetter-character-card.js";
+import Reward from "../generated/excel-bin-output/reward.js";
+import Material from "../generated/excel-bin-output/material.js";
+import ProudSkill from "../generated/excel-bin-output/proud-skill.js";
+import { giTextMaps } from "../consts/textmaps.js";
 import { pascalize } from "@repo/utils/pascalize";
 import {
   GIWeaponType,
   GIWeaponTypeInGame,
   translateWeaponType,
-} from "./weapon-types.js";
-import { GIVisionType } from "./vision-types.js";
+} from "../consts/weapon-types.js";
+import { GIVisionType } from "../consts/vision-types.js";
 
 export type CharacterInfo = {
   id: string; // Using GOOD format ID's

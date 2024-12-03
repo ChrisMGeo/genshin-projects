@@ -6,25 +6,9 @@
     "build": "tsc"
   },
   "exports": {
-    "./textmaps": {
-      "types": "./src/textmaps.ts",
-      "default": "./dist/textmaps.js"
-    },
     "./character": {
-      "types": "./src/character.ts",
-      "default": "./dist/character.js"
-    },
-    "./artifact-piece-types": {
-      "types": "./src/artifact-piece-types.ts",
-      "default": "./dist/artifact-piece-types.js"
-    },
-    "./vision-types": {
-      "types": "./src/vision-types.ts",
-      "default": "./dist/vision-types.js"
-    },
-    "./weapon-types": {
-      "types": "./src/weapon-types.ts",
-      "default": "./dist/weapon-types.js"
+      "types": "./src/generators/character.ts",
+      "default": "./dist/generators/character.js"
     }
   },
   "dependencies": {

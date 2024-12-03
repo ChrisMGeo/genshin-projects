@@ -1,5 +1,5 @@
 import { GILanguage, giLanguages } from "./languages.js";
-import { readDMJSON } from "./util.js";
+import { readDMJSON } from "../util.js";
 
 export type GITextMap = { [key: string]: string };
 
