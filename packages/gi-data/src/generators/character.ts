@@ -239,19 +239,19 @@ export const getCharacterInfos = (): {
       }
     }
 
-    let hpInfo: { initial: number; curve?: string } = {
+    const hpInfo: StatInfo = {
       initial: hpBase,
       curve: propGrowCurves.find((c) => c.type === "FIGHT_PROP_BASE_HP")!
         .growCurve,
     };
 
-    let atkInfo: { initial: number; curve?: string } = {
+    const atkInfo: StatInfo = {
       initial: hpBase,
       curve: propGrowCurves.find((c) => c.type === "FIGHT_PROP_BASE_ATTACK")!
         .growCurve,
     };
 
-    let defInfo: { initial: number; curve?: string } = {
+    const defInfo: StatInfo = {
       initial: hpBase,
       curve: propGrowCurves.find((c) => c.type === "FIGHT_PROP_BASE_DEFENSE")!
         .growCurve,
@@ -280,9 +280,9 @@ export const getCharacterInfos = (): {
       sideIcon,
       nameCard,
 
-      hpInfo: hpInfo as StatInfo,
-      atkInfo: atkInfo as StatInfo,
-      defInfo: defInfo as StatInfo,
+      hpInfo,
+      atkInfo,
+      defInfo,
     });
   }
   return {
