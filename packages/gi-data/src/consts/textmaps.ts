@@ -13,19 +13,21 @@ const getTextMapPath = (lang: GILanguage, num?: number) => {
   else return `TextMap/TextMap${lang}.json`;
 };
 
-export const giTextMaps: Record<GILanguage, GITextMap> = Object.fromEntries(
-  giLanguages.map((lang) => {
-    const splitEntry = giTextMapSplits[lang];
-    let res: GITextMap = {};
-    if (splitEntry) {
-      for (let i = 1; i <= splitEntry; i++) {
-        const textMapPath = getTextMapPath(lang, i);
-        res = { ...res, ...JSON.parse(readDMJSON(textMapPath)) };
-      }
-    } else {
-      const textMapPath = getTextMapPath(lang);
-      res = JSON.parse(readDMJSON(textMapPath));
+export const getTextMap = (lang: GILanguage) => {
+  const splitEntry = giTextMapSplits[lang];
+  let res: GITextMap = {};
+  if (splitEntry) {
+    for (let i = 1; i <= splitEntry; i++) {
+      const textMapPath = getTextMapPath(lang, i);
+      res = { ...res, ...JSON.parse(readDMJSON(textMapPath)) };
     }
-    return [lang, res] as [GILanguage, GITextMap];
-  })
+  } else {
+    const textMapPath = getTextMapPath(lang);
+    res = JSON.parse(readDMJSON(textMapPath));
+  }
+  return res;
+};
+
+export const giTextMaps: Record<GILanguage, GITextMap> = Object.fromEntries(
+  giLanguages.map((lang) => [lang, getTextMap(lang)])
 ) as Record<GILanguage, GITextMap>;

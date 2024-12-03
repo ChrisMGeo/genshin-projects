@@ -9,7 +9,7 @@ import FetterCharacterCard from "../generated/excel-bin-output/fetter-character-
 import Reward from "../generated/excel-bin-output/reward.js";
 import Material from "../generated/excel-bin-output/material.js";
 import ProudSkill from "../generated/excel-bin-output/proud-skill.js";
-import { giTextMaps } from "../consts/textmaps.js";
+import { getTextMap } from "../consts/textmaps.js";
 import { pascalize } from "@repo/utils/pascalize";
 import {
   GIWeaponType,
@@ -17,6 +17,8 @@ import {
   translateWeaponType,
 } from "../consts/weapon-types.js";
 import { GIVisionType } from "../consts/vision-types.js";
+
+const enTextMap = getTextMap("EN");
 
 export type CharacterInfo = {
   id: string; // Using GOOD format ID's
@@ -94,7 +96,7 @@ export const getCharacterInfos = (): {
 
     const weaponType = translateWeaponType(_weaponType as GIWeaponTypeInGame);
 
-    const enName = giTextMaps.EN[nameHash];
+    const enName = enTextMap[nameHash];
     if (!enName) continue;
 
     const id = pascalize(enName);
@@ -124,7 +126,7 @@ export const getCharacterInfos = (): {
     relevantHashes.add(avatarVisionBeforTextMapHash);
     relevantHashes.add(constellationHash);
 
-    const vision = giTextMaps.EN[avatarVisionBeforTextMapHash]! as GIVisionType;
+    const vision = enTextMap[avatarVisionBeforTextMapHash]! as GIVisionType;
 
     let nameCard = "";
 
@@ -209,7 +211,7 @@ export const getCharacterInfos = (): {
             descTextMapHash: descHash,
             icon,
           } = passiveEntry;
-          if (!giTextMaps.EN[nameHash]) {
+          if (!enTextMap[nameHash]) {
             continue; // doesn't exist. TODO: Find better solution
           }
 
