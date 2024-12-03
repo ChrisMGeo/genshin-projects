@@ -290,3 +290,18 @@ export const getCharacterInfos = (): {
     characterInfo,
   };
 };
+
+export const getAvatarCurves = (): {
+  [curveType: string]: { [level: number]: number };
+} => {
+  let res: { [curveType: string]: { [level: number]: number } } = {};
+  for (const { level, curveInfos } of AvatarCurve) {
+    for (const { type: curveType, value: levelMultiplier } of curveInfos) {
+      if (res[curveType] === undefined) {
+        res[curveType] = {};
+      }
+      res[curveType][level] = levelMultiplier;
+    }
+  }
+  return res;
+};
