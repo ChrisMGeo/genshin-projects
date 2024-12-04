@@ -59,6 +59,11 @@ export const geoResName = "FIGHT_PROP_ROCK_SUB_HURT";
 // export const hitName = "FIGHT_PROP_EFFECT_HIT";
 // export const resistName = "FIGHT_PROP_EFFECT_RESIST";
 
+// copy above lines, replace the lines inside this object with it
+// and use the following neovim regex on the newly pasted text (using visual mode):
+// '<,'>s/export const \(.*\)Name = .*/  \[\1Name\]: "\u\1",
+//        ^ where u start typing
+// after doing so, might need to change some names to match previous version: always em and er
 export const giFightPropConversionMap = {
   [baseHpName]: "BaseHp",
   [flatHpName]: "FlatHp",
