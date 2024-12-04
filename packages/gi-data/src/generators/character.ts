@@ -2,6 +2,7 @@ import AvatarCodex from "../generated/excel-bin-output/avatar-codex.js";
 import AvatarTalent from "../generated/excel-bin-output/avatar-talent.js";
 import Avatar from "../generated/excel-bin-output/avatar.js";
 import AvatarCurve from "../generated/excel-bin-output/avatar-curve.js";
+import AvatarPromote from "../generated/excel-bin-output/avatar-promote.js";
 import AvatarSkill from "../generated/excel-bin-output/avatar-skill.js";
 import AvatarSkillDepot from "../generated/excel-bin-output/avatar-skill-depot.js";
 import FetterInfo from "../generated/excel-bin-output/fetter-info.js";
@@ -17,6 +18,13 @@ import {
   translateWeaponType,
 } from "../consts/weapon-types.js";
 import { GIVisionType } from "../consts/vision-types.js";
+import {
+  baseAtkName,
+  baseDefName,
+  baseHpName,
+  GIFightPropInGame,
+  translateFightProp,
+} from "../consts/fight-props.js";
 
 const enTextMap = getTextMap("EN");
 
@@ -46,6 +54,8 @@ export type CharacterInfo = {
   hpInfo: StatInfo;
   atkInfo: StatInfo;
   defInfo: StatInfo;
+
+  promoteId: number;
 };
 
 export type ConstellationData = {
@@ -87,6 +97,7 @@ export const getCharacterInfos = (): {
       defenseBase,
       attackBase,
       propGrowCurves,
+      avatarPromoteId: promoteId,
     } = avatar;
 
     relevantHashes.add(nameHash);
@@ -241,20 +252,17 @@ export const getCharacterInfos = (): {
 
     const hpInfo: StatInfo = {
       initial: hpBase,
-      curve: propGrowCurves.find((c) => c.type === "FIGHT_PROP_BASE_HP")!
-        .growCurve,
+      curve: propGrowCurves.find((c) => c.type === baseHpName)!.growCurve,
     };
 
     const atkInfo: StatInfo = {
       initial: hpBase,
-      curve: propGrowCurves.find((c) => c.type === "FIGHT_PROP_BASE_ATTACK")!
-        .growCurve,
+      curve: propGrowCurves.find((c) => c.type === baseAtkName)!.growCurve,
     };
 
     const defInfo: StatInfo = {
       initial: hpBase,
-      curve: propGrowCurves.find((c) => c.type === "FIGHT_PROP_BASE_DEFENSE")!
-        .growCurve,
+      curve: propGrowCurves.find((c) => c.type === baseDefName)!.growCurve,
     };
 
     characterInfo.push({
@@ -283,6 +291,8 @@ export const getCharacterInfos = (): {
       hpInfo,
       atkInfo,
       defInfo,
+
+      promoteId,
     });
   }
   return {
@@ -291,10 +301,12 @@ export const getCharacterInfos = (): {
   };
 };
 
-export const getAvatarCurves = (): {
+export type AvatarCurveMap = {
   [curveType: string]: { [level: number]: number };
-} => {
-  let res: { [curveType: string]: { [level: number]: number } } = {};
+};
+
+export const getAvatarCurves = (): AvatarCurveMap => {
+  let res: AvatarCurveMap = {};
   for (const { level, curveInfos } of AvatarCurve) {
     for (const { type: curveType, value: levelMultiplier } of curveInfos) {
       if (res[curveType] === undefined) {
@@ -302,6 +314,63 @@ export const getAvatarCurves = (): {
       }
       res[curveType][level] = levelMultiplier;
     }
+  }
+  return res;
+};
+
+export type AvatarPromoteMap = {
+  [promoteId: number]: {
+    hp: { [promoteLevel: number]: number };
+    atk: { [promoteLevel: number]: number };
+    def: { [promoteLevel: number]: number };
+    ascensionStat: {
+      type: string;
+      values: { [promoteLevel: number]: number };
+    };
+  };
+};
+
+export const getAvatarPromoteInfo = (): AvatarPromoteMap => {
+  let res: AvatarPromoteMap = {};
+  for (const {
+    avatarPromoteId: promoteId,
+    promoteLevel = 0,
+    addProps,
+  } of AvatarPromote) {
+    const { value: hpValue = 0 } = addProps.find(
+      (p) => p.propType === baseHpName
+    )!;
+
+    const { value: atkValue = 0 } = addProps.find(
+      (p) => p.propType === baseAtkName
+    )!;
+
+    const { value: defValue = 0 } = addProps.find(
+      (p) => p.propType === baseDefName
+    )!;
+
+    const { propType: ascensionStatType, value: ascensionStatValue = 0 } =
+      addProps.find(
+        (p) => ![baseHpName, baseAtkName, baseDefName].includes(p.propType)
+      )!;
+
+    if (res[promoteId] === undefined) {
+      res[promoteId] = {
+        hp: {},
+        atk: {},
+        def: {},
+        ascensionStat: {
+          type: translateFightProp(ascensionStatType as GIFightPropInGame),
+          values: {},
+        },
+      };
+    }
+
+    res[promoteId].hp[promoteLevel] = hpValue;
+    res[promoteId].atk[promoteLevel] = atkValue;
+    res[promoteId].def[promoteLevel] = defValue;
+
+    res[promoteId].ascensionStat.values[promoteLevel] = ascensionStatValue;
   }
   return res;
 };
