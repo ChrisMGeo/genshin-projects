@@ -42,10 +42,10 @@ export type CharacterInfo = {
   titleHash: number;
   constellationHash: number;
 
-  constellations: ConstellationData[];
-  energySkill: SkillData;
-  passives: SkillData[];
-  skills: SkillData[];
+  constellations: ConstellationInfo[];
+  energySkill: SkillInfo;
+  passives: SkillInfo[];
+  skills: SkillInfo[];
 
   icon: string;
   sideIcon: string;
@@ -58,13 +58,13 @@ export type CharacterInfo = {
   promoteId: number;
 };
 
-export type ConstellationData = {
+export type ConstellationInfo = {
   nameHash: number;
   descHash: number;
   icon: string;
 };
 
-export type SkillData = {
+export type SkillInfo = {
   nameHash: number;
   descHash: number;
   icon: string;
@@ -77,10 +77,10 @@ export type StatInfo = {
 
 export const getCharacterInfos = (): {
   relevantHashes: Set<number>;
-  characterInfo: CharacterInfo[];
+  characterMap: { [key: string]: CharacterInfo };
 } => {
   let relevantHashes = new Set<number>();
-  let characterInfo: CharacterInfo[] = [];
+  let characterMap: { [key: string]: CharacterInfo } = {};
 
   for (const { avatarId } of AvatarCodex) {
     const avatar = Avatar.find((a) => a.id === avatarId);
@@ -114,11 +114,11 @@ export const getCharacterInfos = (): {
 
     const skillDepot = AvatarSkillDepot.find((d) => d.id === skillDepotId);
 
-    let constellations: ConstellationData[] = [];
+    let constellations: ConstellationInfo[] = [];
 
-    let skills: SkillData[] = [];
-    let energySkill: SkillData | undefined = undefined;
-    let passives: SkillData[] = [];
+    let skills: SkillInfo[] = [];
+    let energySkill: SkillInfo | undefined = undefined;
+    let passives: SkillInfo[] = [];
 
     const fetter = FetterInfo.find((f) => f.avatarId === avatarId);
 
@@ -267,7 +267,7 @@ export const getCharacterInfos = (): {
       curve: propGrowCurves.find((c) => c.type === baseDef.inGameId)!.growCurve,
     };
 
-    characterInfo.push({
+    characterMap[id] = {
       id,
       avatarId,
 
@@ -295,11 +295,11 @@ export const getCharacterInfos = (): {
       defInfo,
 
       promoteId,
-    });
+    };
   }
   return {
     relevantHashes,
-    characterInfo,
+    characterMap,
   };
 };
 

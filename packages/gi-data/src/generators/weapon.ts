@@ -54,10 +54,10 @@ const enTextMap = getTextMap("EN");
 
 export const getWeaponInfos = (): {
   relevantHashes: Set<number>;
-  weaponInfo: WeaponInfo[];
+  weaponMap: { [key: string]: WeaponInfo };
 } => {
   let relevantHashes = new Set<number>();
-  let weaponInfo: WeaponInfo[] = [];
+  let weaponMap: { [key: string]: WeaponInfo } = {};
 
   for (const { weaponId } of WeaponCodex) {
     const {
@@ -116,7 +116,7 @@ export const getWeaponInfos = (): {
       }
     );
 
-    weaponInfo.push({
+    weaponMap[id] = {
       id,
       weaponId,
       weaponType,
@@ -134,12 +134,12 @@ export const getWeaponInfos = (): {
 
       icon,
       awakenIcon,
-    });
+    };
   }
 
   return {
     relevantHashes,
-    weaponInfo,
+    weaponMap,
   };
 };
 

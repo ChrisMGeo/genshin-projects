@@ -16,6 +16,10 @@
       "types": "./src/generators/weapon.ts",
       "default": "./dist/generators/weapon.js"
     },
+    "./generators/artifact": {
+      "types": "./src/generators/artifact.ts",
+      "default": "./dist/generators/artifact.js"
+    },
     "./character-info": {
       "types": "./src/generated/character-info.ts",
       "default": "./dist/generated/character-info.js"
@@ -23,6 +27,10 @@
     "./weapon-info": {
       "types": "./src/generated/weapon-info.ts",
       "default": "./dist/generated/weapon-info.js"
+    },
+    "./artifact-info": {
+      "types": "./src/generated/artifact-info.ts",
+      "default": "./dist/generated/artifact-info.js"
     }
   },
   "dependencies": {
