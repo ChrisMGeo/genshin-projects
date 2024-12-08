@@ -11,6 +11,10 @@
     "./generators/character": {
       "types": "./src/generators/character.ts",
       "default": "./dist/generators/character.js"
+    },
+    "./generators/weapon": {
+      "types": "./src/generators/weapon.ts",
+      "default": "./dist/generators/weapon.js"
     }
   },
   "dependencies": {
