@@ -7,7 +7,7 @@ export const pascalize = (str: string): string => {
     if (c?.match(/[a-zA-Z0-9 ]/i)) {
       res += c;
     } else {
-      res += " ";
+      res += "";
     }
   }
   res = res
