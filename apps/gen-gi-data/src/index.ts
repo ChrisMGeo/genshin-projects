@@ -2,7 +2,7 @@ import {
   getCharacterInfos,
   getAvatarCurves,
   getAvatarPromoteInfo,
-} from "@repo/gi-data/character";
+} from "@repo/gi-data/generators/character";
 import { writeFileSync } from "fs";
 import path from "path";
 

@@ -8,7 +8,7 @@
     "test:watch": "vitest --watch"
   },
   "exports": {
-    "./character": {
+    "./generators/character": {
       "types": "./src/generators/character.ts",
       "default": "./dist/generators/character.js"
     }
