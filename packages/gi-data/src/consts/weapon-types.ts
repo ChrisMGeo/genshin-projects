@@ -1,9 +1,9 @@
 export const giWeaponTypeConversionMap = {
-  WEAPON_SWORD_ONE_HAND: "Sword",
-  WEAPON_CLAYMORE: "Claymore",
-  WEAPON_POLE: "Polearm",
-  WEAPON_BOW: "Bow",
-  WEAPON_CATALYST: "Catalyst",
+  WEAPON_SWORD_ONE_HAND: "sword",
+  WEAPON_CLAYMORE: "claymore",
+  WEAPON_POLE: "polearm",
+  WEAPON_BOW: "bow",
+  WEAPON_CATALYST: "catalyst",
 } as const satisfies {
   [key: string]: string;
 };

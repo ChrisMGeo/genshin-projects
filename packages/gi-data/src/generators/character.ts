@@ -17,11 +17,11 @@ import {
   GIWeaponTypeInGame,
   translateWeaponType,
 } from "../consts/weapon-types.js";
-import { GIVisionType } from "../consts/vision-types.js";
+import { GIVision } from "../consts/vision-types.js";
 import {
-  baseAtkName,
-  baseDefName,
-  baseHpName,
+  baseAtk,
+  baseDef,
+  baseHp,
   GIFightPropInGame,
   translateFightProp,
 } from "../consts/fight-props.js";
@@ -33,7 +33,7 @@ export type CharacterInfo = {
   avatarId: number; // In Game ID's
 
   weaponType: GIWeaponType;
-  vision: GIVisionType;
+  vision: GIVision;
   rarity: 4 | 5;
 
   nameHash: number;
@@ -137,7 +137,9 @@ export const getCharacterInfos = (): {
     relevantHashes.add(avatarVisionBeforTextMapHash);
     relevantHashes.add(constellationHash);
 
-    const vision = enTextMap[avatarVisionBeforTextMapHash]! as GIVisionType;
+    const vision = enTextMap[
+      avatarVisionBeforTextMapHash
+    ]!.toLowerCase() as GIVision;
 
     let nameCard = "";
 
@@ -252,17 +254,17 @@ export const getCharacterInfos = (): {
 
     const hpInfo: StatInfo = {
       initial: hpBase,
-      curve: propGrowCurves.find((c) => c.type === baseHpName)!.growCurve,
+      curve: propGrowCurves.find((c) => c.type === baseHp.inGameId)!.growCurve,
     };
 
     const atkInfo: StatInfo = {
       initial: hpBase,
-      curve: propGrowCurves.find((c) => c.type === baseAtkName)!.growCurve,
+      curve: propGrowCurves.find((c) => c.type === baseAtk.inGameId)!.growCurve,
     };
 
     const defInfo: StatInfo = {
       initial: hpBase,
-      curve: propGrowCurves.find((c) => c.type === baseDefName)!.growCurve,
+      curve: propGrowCurves.find((c) => c.type === baseDef.inGameId)!.growCurve,
     };
 
     characterInfo.push({
@@ -338,20 +340,23 @@ export const getAvatarPromoteInfo = (): AvatarPromoteMap => {
     addProps,
   } of AvatarPromote) {
     const { value: hpValue = 0 } = addProps.find(
-      (p) => p.propType === baseHpName
+      (p) => p.propType === baseHp.inGameId
     )!;
 
     const { value: atkValue = 0 } = addProps.find(
-      (p) => p.propType === baseAtkName
+      (p) => p.propType === baseAtk.inGameId
     )!;
 
     const { value: defValue = 0 } = addProps.find(
-      (p) => p.propType === baseDefName
+      (p) => p.propType === baseDef.inGameId
     )!;
 
     const { propType: ascensionStatType, value: ascensionStatValue = 0 } =
       addProps.find(
-        (p) => ![baseHpName, baseAtkName, baseDefName].includes(p.propType)
+        (p) =>
+          !(
+            [baseHp.inGameId, baseAtk.inGameId, baseDef.inGameId] as string[]
+          ).includes(p.propType)
       )!;
 
     if (res[promoteId] === undefined) {

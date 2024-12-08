@@ -10,7 +10,7 @@ import WeaponCurve from "../generated/excel-bin-output/weapon-curve.js";
 import WeaponPromote from "../generated/excel-bin-output/weapon-promote.js";
 import { getTextMap } from "../consts/textmaps.js";
 import {
-  baseAtkName,
+  baseAtk,
   GIFightPropInGame,
   translateFightProp,
 } from "../consts/fight-props.js";
@@ -174,7 +174,7 @@ export const getWeaponPromoteInfo = (): WeaponPromoteMap => {
     addProps,
   } of WeaponPromote) {
     const { value: atkValue = 0 } = addProps.find(
-      (p) => p.propType === baseAtkName
+      (p) => p.propType === baseAtk.inGameId
     )!;
 
     if (res[promoteId] === undefined) {

@@ -1,11 +1,13 @@
-export const giVisionTypes = [
-  "Pyro",
-  "Hydro",
-  "Cryo",
-  "Electro",
-  "Anemo",
-  "Geo",
-  "Dendro",
-] as const;
+export const giVisionConversionMap = {
+  Pyro: "pyro",
+  Hydro: "hydro",
+  Cryo: "cryo",
+  Electro: "electro",
+  Anemo: "anemo",
+  Geo: "geo",
+  Dendro: "dendro",
+} as const;
 
-export type GIVisionType = (typeof giVisionTypes)[number];
+export type GIVisionInGame = keyof typeof giVisionConversionMap;
+
+export type GIVision = (typeof giVisionConversionMap)[GIVisionInGame];

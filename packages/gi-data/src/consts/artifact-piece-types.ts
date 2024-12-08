@@ -1,9 +1,9 @@
 export const giArtifactPieceTypeConversionMap = {
-  EQUIP_BRACER: "Flower",
-  EQUIP_NECKLACE: "Feather",
-  EQUIP_SHOES: "Sands",
-  EQUIP_RING: "Goblet",
-  EQUIP_DRESS: "Circlet",
+  EQUIP_BRACER: "flower",
+  EQUIP_NECKLACE: "plume",
+  EQUIP_SHOES: "sands",
+  EQUIP_RING: "goblet",
+  EQUIP_DRESS: "circlet",
 } as const satisfies {
   [key: string]: string;
 };
