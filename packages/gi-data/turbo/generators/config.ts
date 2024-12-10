@@ -1,5 +1,5 @@
 import type { PlopTypes } from "@turbo/gen";
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readdirSync, readFileSync } from "fs";
 import path from "path";
 import JsonToTS from "json-to-ts";
 
@@ -25,6 +25,7 @@ const getParsedEBOFile = (fileName: string) => {
 
 const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
   const { pascalCaseToKebabCase } = await import("@repo/utils/pascal-to-kebab");
+  const { writeFileSyncRecursive } = await import("@repo/utils/fs");
   let EBOJsonFiles: string[] = [];
   try {
     EBOJsonFiles = readdirSync(EBO).filter((f) => path.extname(f) === ".json");
@@ -66,7 +67,7 @@ const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
       "excel-bin-output",
       `${pascalCaseToKebabCase(typeName)}.ts`
     );
-    writeFileSync(typeFileLocation, typeFileContent);
+    writeFileSyncRecursive(typeFileLocation, typeFileContent);
     console.log(`Write to "${typeFileLocation} was successful..."`);
   }
 

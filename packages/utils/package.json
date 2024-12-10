@@ -17,6 +17,10 @@
     "./pascal-to-kebab": {
       "types": "./src/pascal-to-kebab.ts",
       "default": "./dist/pascal-to-kebab.js"
+    },
+    "./fs": {
+      "types": "./src/fs.ts",
+      "default": "./dist/fs.ts"
     }
   },
   "devDependencies": {
