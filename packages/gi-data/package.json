@@ -20,6 +20,10 @@
       "types": "./src/generators/artifact.ts",
       "default": "./dist/generators/artifact.js"
     },
+    "./generators/fight-props": {
+      "types": "./src/generators/fight-props.ts",
+      "default": "./dist/generators/fight-props.js"
+    },
     "./character-info": {
       "types": "./src/generated/character-info.ts",
       "default": "./dist/generated/character-info.js"
@@ -31,6 +35,10 @@
     "./artifact-info": {
       "types": "./src/generated/artifact-info.ts",
       "default": "./dist/generated/artifact-info.js"
+    },
+    "./fight-props-info": {
+      "types": "./src/generated/fight-props-info.ts",
+      "default": "./dist/generated/fight-props-info.js"
     },
     "./textmaps": {
       "types": "./src/consts/textmaps.ts",
