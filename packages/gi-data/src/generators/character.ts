@@ -258,12 +258,12 @@ export const getCharacterInfos = (): {
     };
 
     const atkInfo: StatInfo = {
-      initial: hpBase,
+      initial: attackBase,
       curve: propGrowCurves.find((c) => c.type === baseAtk.inGameId)!.growCurve,
     };
 
     const defInfo: StatInfo = {
-      initial: hpBase,
+      initial: defenseBase,
       curve: propGrowCurves.find((c) => c.type === baseDef.inGameId)!.growCurve,
     };
 
