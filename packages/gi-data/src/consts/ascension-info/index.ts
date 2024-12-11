@@ -40,6 +40,8 @@ type IntRange<F extends number, T extends number> = Exclude<
   Enumerate<F>
 >;
 
+export type LevelRange = IntRange<1, 91>;
+
 export type GILevel =
   | {
       type: "ascended";
@@ -47,7 +49,7 @@ export type GILevel =
     }
   | {
       type: "unascended";
-      level: IntRange<1, 91>;
+      level: LevelRange;
     };
 
 export const getAscension = (level: GILevel): GIAscensionLevel => {
