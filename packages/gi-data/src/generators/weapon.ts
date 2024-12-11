@@ -9,11 +9,7 @@ import Weapon from "../generated/excel-bin-output/weapon.js";
 import WeaponCurve from "../generated/excel-bin-output/weapon-curve.js";
 import WeaponPromote from "../generated/excel-bin-output/weapon-promote.js";
 import { getTextMap } from "../consts/textmaps.js";
-import {
-  baseAtk,
-  GIFightPropInGame,
-  translateFightProp,
-} from "../consts/fight-props.js";
+import { baseAtk, GIFightPropInGame } from "../consts/fight-props.js";
 import EquipAffix from "../generated/excel-bin-output/equip-affix.js";
 
 export type WeaponInfo = {
@@ -94,7 +90,7 @@ export const getWeaponInfos = (): {
       substatProp.type
     ) {
       substatInfo = {
-        type: translateFightProp(substatProp.propType as GIFightPropInGame),
+        type: substatProp.propType as GIFightPropInGame,
         info: {
           curve: substatProp.type,
           initial: substatProp.initValue,

@@ -23,7 +23,6 @@ import {
   baseDef,
   baseHp,
   GIFightPropInGame,
-  translateFightProp,
 } from "../consts/fight-props.js";
 
 const enTextMap = getTextMap("EN");
@@ -365,7 +364,7 @@ export const getAvatarPromoteInfo = (): AvatarPromoteMap => {
         atk: {},
         def: {},
         ascensionStat: {
-          type: translateFightProp(ascensionStatType as GIFightPropInGame),
+          type: ascensionStatType as GIFightPropInGame,
           values: {},
         },
       };
