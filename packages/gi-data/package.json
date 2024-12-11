@@ -31,6 +31,34 @@
     "./artifact-info": {
       "types": "./src/generated/artifact-info.ts",
       "default": "./dist/generated/artifact-info.js"
+    },
+    "./textmaps": {
+      "types": "./src/consts/textmaps.ts",
+      "default": "./dist/consts/textmaps.js"
+    },
+    "./ascension-info": {
+      "types": "./src/consts/ascension-info/index.ts",
+      "default": "./dist/consts/ascension-info/index.js"
+    },
+    "./languages": {
+      "types": "./src/consts/languages.ts",
+      "default": "./dist/consts/languages.js"
+    },
+    "./artifact-piece-types": {
+      "types": "./src/consts/artifact-piece-types.ts",
+      "default": "./dist/consts/artifact-piece-types.js"
+    },
+    "./fight-props": {
+      "types": "./src/consts/fight-props.ts",
+      "default": "./dist/consts/fight-props.js"
+    },
+    "./vision-types": {
+      "types": "./src/consts/vision-types.ts",
+      "default": "./dist/consts/vision-types.js"
+    },
+    "./weapon-types": {
+      "types": "./src/consts/weapon-types.ts",
+      "default": "./dist/consts/weapon-types.js"
     }
   },
   "dependencies": {
