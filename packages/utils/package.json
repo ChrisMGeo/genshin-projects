@@ -20,7 +20,7 @@
     },
     "./fs": {
       "types": "./src/fs.ts",
-      "default": "./dist/fs.ts"
+      "default": "./dist/fs.js"
     }
   },
   "devDependencies": {
