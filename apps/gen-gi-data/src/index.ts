@@ -85,6 +85,7 @@ for (const lang of giLanguages) {
   );
   const relevantTextMapContents = JSON.stringify(relevantTextMap, null, 2);
   writeFileSyncRecursive(relevantTextMapPath, relevantTextMapContents);
+  console.log(`Write to "${relevantTextMapPath}" was successful...`);
 }
 
 // character-info.ts
