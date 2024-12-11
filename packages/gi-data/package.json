@@ -59,6 +59,10 @@
     "./weapon-types": {
       "types": "./src/consts/weapon-types.ts",
       "default": "./dist/consts/weapon-types.js"
+    },
+    "./relevant-textmaps": {
+      "types": "./src/generated/relevant-textmap/index.ts",
+      "default": "./dist/generated/relevant-textmap/index.js"
     }
   },
   "dependencies": {
