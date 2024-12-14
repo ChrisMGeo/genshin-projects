@@ -4,6 +4,7 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Locale, routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
+// import LocaleSwitcher from "@/components/locale-switcher";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,6 +31,10 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
+          {/* <header className="flex flex-row gap-4">
+            <nav></nav>
+            <LocaleSwitcher className="ml-auto" />
+          </header> */}
           {children}
         </NextIntlClientProvider>
       </body>

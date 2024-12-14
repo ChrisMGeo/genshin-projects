@@ -8,10 +8,13 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      height: {
+        // windowed: "calc(100vh - 12rem)",
       },
+      zIndex: {
+        1: "1",
+      },
+      colors: {},
     },
   },
   plugins: [],

@@ -1,41 +1,33 @@
-"use client";
 import CharacterStatsDisplay from "@/components/character-stats-display";
-import { redirect } from "@/i18n/routing";
 import { characterInfo, CharacterKey } from "@repo/gi-data/character-info";
-import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
 import { use } from "react";
 
 const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
-  const locale = useLocale();
   const { id: _id } = use(params);
-  if (!Object.keys(characterInfo.characterMap).includes(_id)) {
-    redirect({
-      href: "/characters",
-      locale,
-    });
-  }
   const id = _id as CharacterKey;
   const character = characterInfo.characterMap[id];
-  const t = useTranslations();
-  const enName = t(`dm.${character.nameHash}`); //enTextMap[character.nameHash];
   return (
-    <div className="flex flex-col items-center min-w-192">
-      <Image
-        src={`https://gi.yatta.moe/assets/UI/${character.icon}.png`}
-        height="128"
-        width="128"
-        alt={`Character Icon for ${enName}.`}
-      />
-      <div className="flex flex-col">
-        <h1>{enName}</h1>
-        <CharacterStatsDisplay
-          atkInfo={character.atkInfo}
-          defInfo={character.defInfo}
-          hpInfo={character.hpInfo}
-          promoteId={character.promoteId}
-        />
+    <div className="mx-2.5 md:mx-0 lg:mx-0 xl:mx-0 rounded-2xl xl:mt-0 col-span-full xl:col-start-6">
+      <div>
+        <div className="rounded-2xl border-2 p-4 bg-white">
+          <div>
+            <CharacterStatsDisplay
+              atkInfo={character.atkInfo}
+              defInfo={character.defInfo}
+              hpInfo={character.hpInfo}
+              promoteId={character.promoteId}
+              constellationHash={character.constellationHash}
+              vision={character.vision}
+              weapon={character.weaponType}
+              descriptionHash={character.descHash}
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="items-center flex flex-col justify-center"></div>
+        </div>
       </div>
+      <div className="mt-4 flex flex-col justify-between gap-4 xl:hidden"></div>
     </div>
   );
 };
