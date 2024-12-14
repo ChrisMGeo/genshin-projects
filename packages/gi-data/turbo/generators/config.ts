@@ -30,7 +30,7 @@ const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
   try {
     EBOJsonFiles = readdirSync(EBO).filter((f) => path.extname(f) === ".json");
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
   for (const jsonFileName of EBOJsonFiles) {
     const strippedFileName = path.parse(jsonFileName).name;
