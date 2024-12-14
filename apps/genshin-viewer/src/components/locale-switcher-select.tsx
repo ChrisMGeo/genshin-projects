@@ -9,12 +9,14 @@ type Props = {
   children: ReactNode;
   defaultValue: string;
   label: string;
+  className?: string;
 };
 
 export default function LocaleSwitcherSelect({
   children,
   defaultValue,
   label,
+  className,
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -37,8 +39,9 @@ export default function LocaleSwitcherSelect({
   return (
     <label
       className={clsx(
-        "relative text-gray-400",
-        isPending && "transition-opacity [&:disabled]:opacity-30"
+        "relative border-4 rounded-md",
+        isPending && "transition-opacity [&:disabled]:opacity-30",
+        className
       )}
     >
       <p className="sr-only">{label}</p>
@@ -50,7 +53,7 @@ export default function LocaleSwitcherSelect({
       >
         {children}
       </select>
-      <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>
+      {/* <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span> */}
     </label>
   );
 }
