@@ -130,10 +130,15 @@ export const getCharacterInfos = (): {
 
     const {
       avatarVisionBeforTextMapHash,
-      avatarConstellationBeforTextMapHash: constellationHash,
+      avatarConstellationBeforTextMapHash,
+      avatarConstellationAfterTextMapHash,
     } = fetter;
 
     relevantHashes.add(avatarVisionBeforTextMapHash);
+    let constellationHash = avatarConstellationBeforTextMapHash;
+    if (enTextMap[avatarConstellationAfterTextMapHash]) {
+      constellationHash = avatarConstellationAfterTextMapHash;
+    }
     relevantHashes.add(constellationHash);
 
     const vision = enTextMap[
