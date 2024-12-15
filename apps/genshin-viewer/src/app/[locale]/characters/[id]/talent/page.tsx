@@ -9,9 +9,9 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const id = _id as CharacterKey;
   const character = characterInfo.characterMap[id];
   const combatSkills = [
-    character.skills[0],
+    ...character.skills.slice(0, 2),
     character.energySkill,
-    ...character.skills.slice(1),
+    ...character.skills.slice(2),
   ];
   return (
     <div className="mx-2.5 md:mx-0 lg:mx-0 xl:mx-0 rounded-2xl xl:mt-0 col-span-full xl:col-start-3">
