@@ -23,8 +23,8 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
                       src={`https://gi.yatta.moe/assets/UI/${c.icon}.png`}
                       alt="Skill Icon"
                       className="h-14 w-14 flex-shrink-0 rounded-full border-2 bg-black"
-                      width="100"
-                      height="100"
+                      width="52"
+                      height="52"
                     />
                     <div className="mr-auto lg:text-lgxl:text-xl">
                       {i + 1}. {t(`dm.${c.nameHash}`)}
