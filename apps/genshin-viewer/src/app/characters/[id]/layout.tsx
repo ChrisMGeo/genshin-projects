@@ -1,6 +1,7 @@
-import { redirect, Link } from "@/i18n/routing";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import { characterInfo, CharacterKey } from "@repo/gi-data/character-info";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { use } from "react";
 import Image from "next/image";
 import clsx from "clsx";
@@ -18,13 +19,9 @@ export default function CharacterPageLayout({
   params: Promise<{ id: string }>;
   children: React.ReactNode;
 }) {
-  const locale = useLocale();
   const { id: _id } = use(params);
   if (!Object.keys(characterInfo.characterMap).includes(_id)) {
-    redirect({
-      href: "/characters",
-      locale,
-    });
+    redirect("/characters");
   }
   const id = _id as CharacterKey;
   const baseLink = `/characters/${id}`;

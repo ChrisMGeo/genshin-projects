@@ -1,4 +1,4 @@
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { characterInfo } from "@repo/gi-data/character-info";
 import { CharacterInfo } from "@repo/gi-data/generators/character";
 import { useTranslations } from "next-intl";
