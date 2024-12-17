@@ -2,6 +2,7 @@ import { characterInfo, CharacterKey } from "@repo/gi-data/character-info";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { use } from "react";
+import UnityRichTextComponent from "@repo/unity-richtext-react/component";
 
 const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const t = useTranslations();
@@ -37,7 +38,9 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
                 </div>
               </div>
               <div className="h-full flex flex-col gap-4 rounded-b-2xl border-r-2 border-l-2 border-b-2 bg-white p-4 md:mx-0 lg:mx-0 xl:mx-0">
-                {t.raw(`dm.${s.descHash}`)}
+                <UnityRichTextComponent>
+                  {t.raw(`dm.${s.descHash}`).split("\\n").join("\n")}
+                </UnityRichTextComponent>
               </div>
             </div>
           ))}
@@ -62,8 +65,10 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   </div>
                 </div>
               </div>
-              <div className="h-full flex flex-col gap-4 rounded-b-2xl border-r-2 border-l-2 border-b-2 bg-white p-4 md:mx-0 lg:mx-0 xl:mx-0">
-                {t.raw(`dm.${s.descHash}`)}
+              <div className="h-full flex flex-col gap-4 rounded-b-2xl border-r-2 border-l-2 border-b-2 bg-white p-4 md:mx-0 lg:mx-0 xl:mx-0 whitespace-pre-wrap">
+                <UnityRichTextComponent>
+                  {t.raw(`dm.${s.descHash}`).split("\\n").join("\n")}
+                </UnityRichTextComponent>
               </div>
             </div>
           ))}

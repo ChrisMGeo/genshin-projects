@@ -2,6 +2,7 @@ import { characterInfo, CharacterKey } from "@repo/gi-data/character-info";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { use } from "react";
+import UnityRichTextComponent from "@repo/unity-richtext-react/component";
 
 const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const t = useTranslations();
@@ -37,10 +38,9 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   <div className="flex flex-col">
                     <div className="flex flex-col gap-2">
                       <div className="leading-relaxed lg:leading-block xl:leading-block text-sm select-text">
-                        {t.raw(`dm.${c.descHash}`)}
-                        {/* <RichText>
-                          {(tags) => t.rich(`dm.${c.descHash}`, tags)}
-                        </RichText> */}
+                        <UnityRichTextComponent>
+                          {t.raw(`dm.${c.descHash}`).split("\\n").join("\n")}
+                        </UnityRichTextComponent>
                       </div>
                     </div>
                   </div>

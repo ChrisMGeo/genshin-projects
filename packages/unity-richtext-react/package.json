@@ -1,0 +1,26 @@
+{
+    "name": "@repo/unity-richtext-react",
+    "version": "0.0.0",
+    "exports": {
+        "./component": "./src/index.tsx"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "devDependencies": {
+        "@repo/eslint-config": "workspace:*",
+        "@repo/typescript-config": "workspace:*",
+        "@types/eslint": "^9.6.1",
+        "@types/node": "^22.10.2",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "typescript": "^5.7.2"
+    },
+    "dependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "xml-js": "^1.6.8"
+    }
+}
