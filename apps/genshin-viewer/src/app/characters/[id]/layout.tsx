@@ -4,7 +4,7 @@ import { characterInfo, CharacterKey } from "@repo/gi-data/character-info";
 import { useTranslations } from "next-intl";
 import { use } from "react";
 import Image from "next/image";
-import clsx from "clsx";
+import BlurringBackground from "@/components/page-helpers/blurring-bg";
 
 export function generateStaticParams() {
   return (Object.keys(characterInfo.characterMap) as CharacterKey[]).map(
@@ -37,15 +37,10 @@ export default function CharacterPageLayout({
   return (
     <main className="min-h-screen py-8 md:pr-5 md:pl-28 lg:py-14 lg:pl-32 lg:pr-8">
       <div className="flex flex-col flex-wrap justify-center">
-        <div
-          className={clsx(
-            false ? "blur-xl filter xl:opacity-10" : "xl:opacity-100",
-            "lg:opacity-10 fixed inset-0 -z-1 hidden bg-fixed opacity-10 transition-opacity duration-200 ease-out md:block lg:block xl:block"
-          )}
-          style={{
-            background: `url(${JSON.stringify(`https://gi.yatta.moe/assets/UI/${character.icon.replace("AvatarIcon", "Gacha_AvatarImg")}.sm.png`)}) center center no-repeat`,
-          }}
-        ></div>
+        <BlurringBackground
+          id={character.id}
+          splashUrl={`https://gi.yatta.moe/assets/UI/${character.icon.replace("AvatarIcon", "Gacha_AvatarImg")}.sm.png`}
+        ></BlurringBackground>
         <div className="grid grid-cols-none gap-4 lg:grid-cols-4 xl:grid-cols-8">
           <div className="grid-col grid gap-4 md:gap-2 lg:col-span-full lg:flex lg:flex-col lg:gap-2 xl:sticky xl:top-14 xl:col-span-2 xl:flex xl:h-windowed xl:flex-col xl:gap-2">
             <div className="after:h-full after:w-full after:content-[''] after:absolute bottom-10 -z-1 mb-64 -mt-24 block object-contain md:hidden lg:hidden xl:hidden">
