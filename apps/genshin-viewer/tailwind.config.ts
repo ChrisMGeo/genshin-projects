@@ -11,6 +11,9 @@ export default {
       height: {
         // windowed: "calc(100vh - 12rem)",
       },
+      transitionDuration: {
+        "400": "400ms",
+      },
       zIndex: {
         1: "1",
       },

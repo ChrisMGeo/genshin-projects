@@ -4,6 +4,8 @@ import { getMessages, getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { GIUTSLanguage, giUTSLanguages } from "@repo/gi-data/languages";
+import SideBar from "@/components/sidebar";
+import Footer from "@/components/footer";
 // import LocaleSwitcher from "@/components/locale-switcher";
 
 export const metadata: Metadata = {
@@ -23,13 +25,13 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body className="antialiased">
+      <body className="antialiased m-0 flex min-h-full flex-col p-0">
         <NextIntlClientProvider messages={messages}>
-          {/* <header className="flex flex-row gap-4">
-            <nav></nav>
-            <LocaleSwitcher className="ml-auto" />
-          </header> */}
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <SideBar />
+            {children}
+            <Footer />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

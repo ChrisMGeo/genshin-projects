@@ -1,9 +1,3 @@
-import Link from "next/link";
-
 export default function Home() {
-  return (
-    <div>
-      <Link href="/characters">Characters</Link>
-    </div>
-  );
+  return <></>;
 }
