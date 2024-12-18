@@ -18,8 +18,8 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
               promoteId={character.promoteId}
               constellationHash={character.constellationHash}
               vision={character.vision}
-              weapon={character.weaponType}
-              descriptionHash={character.descHash}
+              weaponType={character.weaponType}
+              descHash={character.descHash}
             />
           </div>
         </div>

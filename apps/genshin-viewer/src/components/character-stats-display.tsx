@@ -7,57 +7,61 @@ import { fightPropsInfo } from "@repo/gi-data/fight-props-info";
 import { CharacterInfo } from "@repo/gi-data/generators/character";
 import {
   getAscension,
-  // giMaxLevelForAscension,
+  giMaxLevelForAscension,
+  GIAscensionLevel,
   LevelRange,
   type GILevel,
 } from "@repo/gi-data/ascension-info";
 import { DeepReadonly } from "next/dist/shared/lib/deep-readonly";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { GIVision } from "@repo/gi-data/vision-types";
-import { GIWeaponType } from "@repo/gi-data/weapon-types";
+import clsx from "clsx";
 
 type CurveName = keyof typeof characterStatCurves;
 type PromoteId = keyof typeof characterAscensionInfo;
+
+type CharacterStatsDisplayProps = DeepReadonly<
+  Pick<
+    CharacterInfo,
+    | "atkInfo"
+    | "defInfo"
+    | "hpInfo"
+    | "promoteId"
+    | "descHash"
+    | "vision"
+    | "weaponType"
+    | "constellationHash"
+  >
+>;
 
 const CharacterStatsDisplay = ({
   atkInfo,
   defInfo,
   hpInfo,
   promoteId,
-  descriptionHash,
+  descHash,
   vision,
-  weapon,
+  weaponType,
   constellationHash,
-}: {
-  atkInfo: DeepReadonly<CharacterInfo["atkInfo"]>;
-  defInfo: DeepReadonly<CharacterInfo["defInfo"]>;
-  hpInfo: DeepReadonly<CharacterInfo["hpInfo"]>;
-  promoteId: DeepReadonly<CharacterInfo["promoteId"]>;
-  descriptionHash: number;
-  vision: GIVision;
-  weapon: GIWeaponType;
-  constellationHash: number;
-}) => {
+}: CharacterStatsDisplayProps) => {
   const t = useTranslations();
   const constellation = t(`dm.${constellationHash}`);
-  const description = t(`dm.${descriptionHash}`);
+  const description = t(`dm.${descHash}`);
   const [level, setLevel] = useState<GILevel>({
     type: "unascended",
     level: 1,
   });
-  // const [ascendIfPossible, setAscendIfPossible] = useState(false);
+  const [ascendIfPossible, setAscendIfPossible] = useState(false);
 
   const currentAscension = getAscension(level);
 
-  // const isAscendable =
-  //   level.level === giMaxLevelForAscension[currentAscension] &&
-  //   currentAscension !== 6;
-  // const ascend = ascendIfPossible && isAscendable;
+  const isAscendable =
+    level.level === giMaxLevelForAscension[currentAscension] &&
+    currentAscension !== 6;
+  const ascend = ascendIfPossible && isAscendable;
 
-  // const finalAscension = (currentAscension +
-  // (ascend ? 1 : 0)) as GIAscensionLevel;
-  const finalAscension = currentAscension;
+  const finalAscension = (currentAscension +
+    (ascend ? 1 : 0)) as GIAscensionLevel;
 
   // const maxLevel = giMaxLevelForAscension[finalAscension];
   const ascensionInfo =
@@ -74,12 +78,17 @@ const CharacterStatsDisplay = ({
     defInfo.initial *
       characterStatCurves[defInfo.curve as CurveName][level.level] +
     ascensionInfo.def[finalAscension];
+  useEffect(() => {
+    setAscendIfPossible(false);
+  }, [level]);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row items-center gap-6 font-semibold">
-        <div className="whitespace-nowrap">
+        <div className="whitespace-nowrap w-20">
           {"Lv. " + level.level.toString().padStart(2, "0")}
+          <span className={clsx(ascend ? "" : "invisible")}>+</span>
         </div>
+
         <input
           type="range"
           min="1"
@@ -98,20 +107,21 @@ const CharacterStatsDisplay = ({
       <div className="flex flex-col gap-4">
         <table className="hover w-full">
           <tbody>
-            {/* <tr style={isAscendable ? {} : { display: "none" }}>
-            <td className="flex flex-row items-center gap-2">
-              <span>Ascend</span>
-            </td>
-            <td className="text-right">
-              <input
-                type="checkbox"
-                onChange={(e) => {
-                  setAscendIfPossible(e.target.checked);
-                }}
-                checked={ascendIfPossible}
-              />
-            </td>
-          </tr> */}
+            <tr>
+              <td className="flex flex-row items-center gap-2">
+                <span>Ascend</span>
+              </td>
+              <td className="text-right">
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    setAscendIfPossible(e.target.checked);
+                  }}
+                  checked={ascendIfPossible}
+                  disabled={!isAscendable}
+                />
+              </td>
+            </tr>
             <tr>
               <td className="flex flex-row items-center gap-2">
                 <span>{t(`dm.${fightPropsInfo["FIGHT_PROP_BASE_HP"]}`)}</span>
@@ -156,7 +166,7 @@ const CharacterStatsDisplay = ({
             </tr>
             <tr>
               <td>Weapon</td>
-              <td className="text-right">{weapon}</td>
+              <td className="text-right">{weaponType}</td>
             </tr>
             <tr>
               <td>Constellation</td>
