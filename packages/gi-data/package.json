@@ -71,6 +71,10 @@
     "./relevant-textmaps": {
       "types": "./src/generated/relevant-textmap/index.ts",
       "default": "./dist/generated/relevant-textmap/index.js"
+    },
+    "./artifact-groups": {
+      "types": "./src/consts/artifact-groups.ts",
+      "default": "./dist/consts/artifact-groups.js"
     }
   },
   "dependencies": {
