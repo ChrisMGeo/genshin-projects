@@ -10,7 +10,6 @@ import {
 } from "@repo/gi-data/generators/weapon";
 import { getArtifactInfos } from "@repo/gi-data/generators/artifact";
 import { getFightPropInfos } from "@repo/gi-data/generators/fight-props";
-import { writeFileSync } from "fs";
 import path from "path";
 import { getTextMap, GITextMap } from "@repo/gi-data/textmaps";
 import { writeFileSyncRecursive } from "@repo/utils/fs";
@@ -124,7 +123,7 @@ const characterInfoLines = [
 const characterInfoContents = characterInfoLines.join("\n");
 const characterInfoPath = path.join(GI_DATA_EXPORTS, "character-info.ts");
 
-writeFileSync(characterInfoPath, characterInfoContents);
+writeFileSyncRecursive(characterInfoPath, characterInfoContents);
 console.log(`Write to "${characterInfoPath}" was successful...`);
 
 // weapon-info.ts
@@ -138,7 +137,7 @@ const weaponInfoLines = [
 const weaponInfoContents = weaponInfoLines.join("\n");
 const weaponInfoPath = path.join(GI_DATA_EXPORTS, "weapon-info.ts");
 
-writeFileSync(weaponInfoPath, weaponInfoContents);
+writeFileSyncRecursive(weaponInfoPath, weaponInfoContents);
 console.log(`Write to "${weaponInfoPath}" was successful...`);
 
 // artifact-info.ts
