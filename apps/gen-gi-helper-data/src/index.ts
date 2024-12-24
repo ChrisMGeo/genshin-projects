@@ -56,7 +56,7 @@ type CharacterBuild = {
       }
   )[];
   artifactMainStats: { sands?: string; goblet?: string; circlet?: string };
-  artifactSubStats: string[];
+  artifactSubStats: string;
   talentPriority: string;
   abilityTips: string;
 };
@@ -227,7 +227,6 @@ async function main() {
         weapons: _weapons,
         artifactSets,
         artifactMainStats: _artifactMainStats,
-        artifactSubStats: _artifactSubStats,
         ...rest
       }) => {
         let artifactMainStats: {
@@ -259,9 +258,6 @@ async function main() {
           ...rest,
           weapons,
           artifactMainStats,
-          artifactSubStats: _artifactSubStats
-            .split("\n")
-            .map((e) => e.slice(_artifactSubStats.indexOf(".") + 1)),
           artifactSets: artifactSets
             .split("\n")
             .map((line: string) => {
