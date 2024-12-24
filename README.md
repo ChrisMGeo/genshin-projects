@@ -10,7 +10,9 @@ This Turborepo includes the following packages/apps:
 
 - `genshin-viewer`: a [Next.js](https://nextjs.org/) app for viewing, and a mediocre copy of [Project Amber](https://gi.yatta.moe)
 - `gen-gi-data`: Generates static files from `@repo/gi-data` to use with apps.
+- `gen-gi-helper-data`: Generates static build data from "Genshin Impact Helper Team's Character Builds" Google Sheet (Requires providing .env data via vercel)
 - `@repo/gi-data`: Responsible for getting data
+- `@repo/gi-helper-data`: Holds data generated from `gen-gi-helper-data`
 - `@repo/utils`: Common utilities used across packages and apps
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
