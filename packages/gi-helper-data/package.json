@@ -1,0 +1,20 @@
+{
+  "name": "@repo/gi-helper-data",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./builds": {
+      "types": "./src/builds.ts",
+      "default": "./dist/builds.js"
+    }
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "latest"
+  }
+}

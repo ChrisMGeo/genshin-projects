@@ -34,6 +34,8 @@ pnpm --filter utils run build
 pnpm run gen gi-data-types
 pnpm --filter gi-data run build
 pnpm --filter gen-gi-data run generate
+pnpm --filter gi-data run build
+pnpm --filter gen-gi-helper-data run generate
 ```
 
 ### Build
