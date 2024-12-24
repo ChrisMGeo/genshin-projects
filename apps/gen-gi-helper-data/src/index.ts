@@ -155,16 +155,16 @@ async function main() {
   if (!valueRanges) return;
   for (let i = 0; i < valueRanges.length; i++) {
     const bRow = valueRanges[i]!.values;
-    let last_j = 0;
+    let lastJ = 0;
     if (!bRow) continue;
     for (let j = 0; j < bRow.length; j++) {
       const cell: string = bRow[j]![0];
       if (!cell) continue;
       if (!cell.toLowerCase().includes("notes")) {
-        last_j = j;
+        lastJ = j;
       } else {
         const characterRange: string = `${sheetNames[i]}!B${j + 1}:I${
-          last_j + 1
+          lastJ + 1
         }`;
         characterRanges.push(characterRange);
       }
@@ -191,11 +191,11 @@ async function main() {
       console.log(`viewName: ${viewName} not found`);
       continue;
     }
-    const nameId = searchRes.id;
-    const element = searchRes.vision;
+    const id = searchRes.id;
+    const vision = searchRes.vision;
 
     let builds: UnmodifiedCharacterBuild[] = [];
-    const weapon = searchRes.weaponType;
+    const weaponType = searchRes.weaponType;
     const notes: string = characterValues.values
       ? characterValues.values.slice(-1)[0]![1]
       : "";
@@ -227,7 +227,7 @@ async function main() {
           .split("\n")
           .filter((line: string | undefined) => line)
           .map((line: string) => {
-            const result = weaponFuses[weapon].search(line)?.[0]?.item?.id;
+            const result = weaponFuses[weaponType].search(line)?.[0]?.item?.id;
             if (!result) {
               console.log(`${line}`);
               console.log(`\t${result}`);
@@ -288,9 +288,9 @@ async function main() {
       }
     );
     const character = {
-      nameId,
-      element,
-      weapon,
+      id,
+      vision,
+      weaponType,
       notes,
       builds: modifiedBuilds,
     };
