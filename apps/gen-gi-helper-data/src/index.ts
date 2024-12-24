@@ -55,8 +55,8 @@ type CharacterBuild = {
         options: [ArtifactSetChoice, ArtifactSetChoice];
       }
   )[];
-  artifactMainStats: string;
-  artifactSubStats: string;
+  artifactMainStats: { sands?: string; goblet?: string; circlet?: string };
+  artifactSubStats: string[];
   talentPriority: string;
   abilityTips: string;
 };
@@ -221,8 +221,28 @@ async function main() {
       };
       builds.push(buildObject);
     }
+    const relevantArtifactTypes = ["sands", "goblet", "circlet"] as const;
     const modifiedBuilds: CharacterBuild[] = builds.map(
-      ({ weapons: _weapons, artifactSets, ...rest }) => {
+      ({
+        weapons: _weapons,
+        artifactSets,
+        artifactMainStats: _artifactMainStats,
+        artifactSubStats: _artifactSubStats,
+        ...rest
+      }) => {
+        let artifactMainStats: {
+          sands?: string;
+          goblet?: string;
+          circlet?: string;
+        } = {};
+        _artifactMainStats.split("\n").forEach((line) => {
+          for (const type of relevantArtifactTypes) {
+            const prefixed = type + " - ";
+            if (line.toLowerCase().startsWith(prefixed)) {
+              artifactMainStats[type] = line.slice(prefixed.length);
+            }
+          }
+        });
         const weapons = _weapons
           .split("\n")
           .filter((line: string | undefined) => line)
@@ -238,7 +258,10 @@ async function main() {
         return {
           ...rest,
           weapons,
-          // artifactSets: artifactSets.split("\n").map((line: string) => allArtifactInfo.find(artifact => line.includes(artifact.name))?.nameId).filter((a: string | undefined) => a) as ArtifactId[],
+          artifactMainStats,
+          artifactSubStats: _artifactSubStats
+            .split("\n")
+            .map((e) => e.slice(_artifactSubStats.indexOf(".") + 1)),
           artifactSets: artifactSets
             .split("\n")
             .map((line: string) => {
