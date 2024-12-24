@@ -3,11 +3,12 @@ import { google } from "googleapis";
 import { characterInfo, CharacterKey } from "@repo/gi-data/character-info";
 import { weaponInfo, WeaponKey } from "@repo/gi-data/weapon-info";
 import { GIWeaponType } from "@repo/gi-data/weapon-types";
-import { artifactInfo, ArtifactSetKey } from "@repo/gi-data/artifact-info";
 import {
+  artifactInfo,
+  ArtifactSetKey,
   artifactGroups,
   ArtifactGroupKey,
-} from "@repo/gi-data/artifact-groups";
+} from "@repo/gi-data/artifact-info";
 import { getTextMap } from "@repo/gi-data/relevant-textmaps";
 import Fuse from "fuse.js";
 import { writeFileSyncRecursive } from "@repo/utils/fs";
