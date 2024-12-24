@@ -105,23 +105,22 @@ async function main() {
       }
     )
   ) as Record<GIWeaponType, Fuse<TranslatedWeaponInfo>>;
+  const credentials = {
+    type: process.env.GOOGLEAPIS_TYPE,
+    project_id: process.env.GOOGLEAPIS_PROJECT_ID,
+    private_key_id: process.env.GOOGLEAPIS_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLEAPIS_PRIVATE_KEY,
+    client_email: process.env.GOOGLEAPIS_CLIENT_EMAIL,
+    client_id: process.env.GOOGLEAPIS_CLIENT_ID,
+    auth_uri: process.env.GOOGLEAPIS_AUTH_URI,
+    token_uri: process.env.GOOGLEAPIS_TOKEN_URI,
+    auth_provider_x509_cert_url:
+      process.env.GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL,
+    client_x509_cert_url: process.env.GOOGLEAPIS_CLIENT_X509_CERT_URL,
+  };
 
   const auth = new google.auth.GoogleAuth({
-    credentials: {
-      type: process.env.GOOGLEAPIS_TYPE,
-      project_id: process.env.GOOGLEAPIS_PROJECT_ID,
-      private_key_id: process.env.GOOGLEAPIS_PRIVATE_KEY_ID,
-      private_key: process.env.GOOGLEAPIS_PRIVATE_KEY,
-      client_email: process.env.GOOGLEAPIS_CLIENT_EMAIL,
-      client_id: process.env.GOOGLEAPIS_CLIENT_ID,
-      // @ts-ignore
-      auth_uri: process.env.GOOGLEAPIS_AUTH_URI,
-      token_uri: process.env.GOOGLEAPIS_TOKEN_URI,
-      auth_provider_x509_cert_url:
-        process.env.GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL,
-      client_x509_cert_url: process.env.GOOGLEAPIS_CLIENT_X509_CERT_URL,
-    },
-    // keyFile: "credentials.json",
+    credentials,
     scopes: "https://www.googleapis.com/auth/spreadsheets.readonly",
   });
 
