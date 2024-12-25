@@ -22,7 +22,7 @@ const CharacterBuildPage = ({
   const { id: _id } = use(params);
   const id = _id as CharacterKey;
   //   const character = characterInfo.characterMap[id];
-  const buildInfo = characterBuilds.find((c) => c.id === id)!;
+  const buildInfo = characterBuilds.find((c) => c.id === id);
   return (
     <div className="mx-2.5 md:mx-0 lg:mx-0 xl:mx-0 rounded-2xl xl:mt-0 col-span-full xl:col-start-3">
       <div>
@@ -31,98 +31,103 @@ const CharacterBuildPage = ({
             <div>
               <div className="mb-2 text-3xl">Builds</div>
               <div className="flex flex-col gap-6 rounded-2xl border-2 p-4 bg-white">
-                {buildInfo.builds.map((build, i) => {
-                  return (
-                    <div key={i}>
-                      <div className="flex flex-col gap-2">
-                        <div className="flex flex-row items-center">
-                          <div className="text-lg font-bold">{build.name}</div>
+                {buildInfo &&
+                  buildInfo.builds.map((build, i) => {
+                    return (
+                      <div key={i}>
+                        <div className="flex flex-col gap-2">
+                          <div className="flex flex-row items-center">
+                            <div className="text-lg font-bold">
+                              {build.name}
+                            </div>
+                          </div>
+                          <div className="border-t-2 border-opacity-40 pt-1.5 text-sm"></div>
                         </div>
-                        <div className="border-t-2 border-opacity-40 pt-1.5 text-sm"></div>
+                        <div className="flex flex-col gap-4">
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-bold"> • Best Weapon(s)</div>
+                            <div className="whitespace-pre-wrap select-text flex flex-col">
+                              {build.weapons.map((weaponKey, i) => {
+                                const { icon, id, nameHash } =
+                                  weaponInfo.weaponMap[weaponKey];
+                                return (
+                                  <Link
+                                    key={i}
+                                    href={`/weapons/${id}`}
+                                    className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex"
+                                  >
+                                    <span>{t(`dm.${nameHash}`)}</span>
+                                    <Image
+                                      src={`https://gi.yatta.moe/assets/UI/${icon}.png`}
+                                      alt="Weapon"
+                                      width="128"
+                                      height="128"
+                                      className="w-6 h-6"
+                                    />
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-bold">
+                              {" "}
+                              • Best Artifact Set(s)
+                            </div>
+                            <div className="whitespace-pre-wrap select-text flex flex-col">
+                              {build.artifactSets.map(
+                                (artifactSetConfig, i) => {
+                                  let content: ReactNode[] = [];
+                                  switch (artifactSetConfig.type) {
+                                    case "single":
+                                      {
+                                        switch (artifactSetConfig.option.type) {
+                                          case "set":
+                                            content = [
+                                              <ArtifactSetView
+                                                id={artifactSetConfig.option.id}
+                                                num={4}
+                                                key={0}
+                                              />,
+                                            ];
+                                            break;
+                                          case "group":
+                                            content = [
+                                              <ArtifactGroupView
+                                                id={artifactSetConfig.option.id}
+                                                num={4}
+                                                key={0}
+                                              />,
+                                            ];
+                                            break;
+                                        }
+                                      }
+                                      break;
+                                    case "double":
+                                      {
+                                      }
+                                      break;
+                                    case "choose-2":
+                                      {
+                                      }
+                                      break;
+                                  }
+                                  return (
+                                    <div
+                                      className="mt-0.5 flex flex-row flex-wrap gap-2.5"
+                                      key={i}
+                                    >
+                                      {content}
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex flex-col gap-4">
-                        <div className="flex flex-col gap-0.5">
-                          <div className="font-bold"> • Best Weapon(s)</div>
-                          <div className="whitespace-pre-wrap select-text flex flex-col">
-                            {build.weapons.map((weaponKey, i) => {
-                              const { icon, id, nameHash } =
-                                weaponInfo.weaponMap[weaponKey];
-                              return (
-                                <Link
-                                  key={i}
-                                  href={`/weapons/${id}`}
-                                  className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex"
-                                >
-                                  <span>{t(`dm.${nameHash}`)}</span>
-                                  <Image
-                                    src={`https://gi.yatta.moe/assets/UI/${icon}.png`}
-                                    alt="Weapon"
-                                    width="128"
-                                    height="128"
-                                    className="w-6 h-6"
-                                  />
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-0.5">
-                          <div className="font-bold">
-                            {" "}
-                            • Best Artifact Set(s)
-                          </div>
-                          <div className="whitespace-pre-wrap select-text flex flex-col">
-                            {build.artifactSets.map((artifactSetConfig, i) => {
-                              let content: ReactNode[] = [];
-                              switch (artifactSetConfig.type) {
-                                case "single":
-                                  {
-                                    switch (artifactSetConfig.option.type) {
-                                      case "set":
-                                        content = [
-                                          <ArtifactSetView
-                                            id={artifactSetConfig.option.id}
-                                            num={4}
-                                            key={0}
-                                          />,
-                                        ];
-                                        break;
-                                      case "group":
-                                        content = [
-                                          <ArtifactGroupView
-                                            id={artifactSetConfig.option.id}
-                                            num={4}
-                                            key={0}
-                                          />,
-                                        ];
-                                        break;
-                                    }
-                                  }
-                                  break;
-                                case "double":
-                                  {
-                                  }
-                                  break;
-                                case "choose-2":
-                                  {
-                                  }
-                                  break;
-                              }
-                              return (
-                                <div
-                                  className="mt-0.5 flex flex-row flex-wrap gap-2.5"
-                                  key={i}
-                                >
-                                  {content}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             </div>
           </div>
