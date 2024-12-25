@@ -70,6 +70,9 @@ importers:
       '@repo/gi-data':
         specifier: workspace:*
         version: link:../../packages/gi-data
+      '@repo/gi-helper-data':
+        specifier: workspace:*
+        version: link:../../packages/gi-helper-data
       '@repo/unity-richtext-react':
         specifier: workspace:*
         version: link:../../packages/unity-richtext-react

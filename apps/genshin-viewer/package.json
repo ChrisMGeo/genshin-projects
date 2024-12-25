@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/gi-helper-data": "workspace:*",
     "@repo/gi-data": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/unity-richtext-react": "workspace:*",

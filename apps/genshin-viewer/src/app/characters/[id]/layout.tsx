@@ -33,6 +33,7 @@ export default function CharacterPageLayout({
     { title: "Profile", href: `${baseLink}` },
     { title: "Talent", href: `${baseLink}/talent` },
     { title: "Constellation", href: `${baseLink}/constellation` },
+    { title: "Builds", href: `${baseLink}/builds` },
   ];
   return (
     <main className="min-h-screen py-8 md:pr-5 md:pl-28 lg:py-14 lg:pl-32 lg:pr-8">
