@@ -54,7 +54,7 @@ const CharacterBuildPage = ({
                                   <Link
                                     key={i}
                                     href={`/weapons/${id}`}
-                                    className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex"
+                                    className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex w-fit"
                                   >
                                     <span>{t(`dm.${nameHash}`)}</span>
                                     <Image
