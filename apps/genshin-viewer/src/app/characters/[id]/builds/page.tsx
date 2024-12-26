@@ -48,7 +48,9 @@ const CharacterBuildPage = ({
                           <div className="flex flex-col gap-0.5">
                             <div className="font-bold"> • Best Weapon(s)</div>
                             <div className="whitespace-pre-wrap select-text flex flex-col">
-                              {build.weapons.map((weaponKey, i) => {
+                              {build?.weapons?.map((weaponKey, i) => {
+                                if (!weaponInfo?.weaponMap?.[weaponKey])
+                                  return undefined;
                                 const { icon, id, nameHash } =
                                   weaponInfo.weaponMap[weaponKey];
                                 return (
