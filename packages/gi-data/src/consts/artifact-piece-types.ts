@@ -15,3 +15,18 @@ export type GIArtifactPieceType =
 
 export const translateArtifactPieceType = (type: GIArtifactPieceTypeInGame) =>
   giArtifactPieceTypeConversionMap[type];
+
+export const artifactPieceTypeIcon = (type: GIArtifactPieceType): string => {
+  switch (type) {
+    case "flower":
+      return "UI_Icon_Equip_Bracer";
+    case "plume":
+      return "UI_Icon_Equip_Necklace";
+    case "sands":
+      return "UI_Icon_Equip_Shoes";
+    case "goblet":
+      return "UI_Icon_Equip_Ring";
+    case "circlet":
+      return "UI_Icon_Equip_Dress";
+  }
+};
