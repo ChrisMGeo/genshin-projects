@@ -230,15 +230,23 @@ async function main() {
         ...rest
       }) => {
         let artifactMainStats: {
-          sands?: string;
-          goblet?: string;
-          circlet?: string;
-        } = {};
+          sands: string;
+          goblet: string;
+          circlet: string;
+        } = {
+          sands: "",
+          goblet: "",
+          circlet: "",
+        };
+        const prefixes = [" - ", ": "];
         _artifactMainStats.split("\n").forEach((line) => {
           for (const type of relevantArtifactTypes) {
-            const prefixed = type + " - ";
-            if (line.toLowerCase().startsWith(prefixed)) {
-              artifactMainStats[type] = line.slice(prefixed.length);
+            for (const prefix of prefixes) {
+              const prefixed = type + prefix;
+              if (line.toLowerCase().startsWith(prefixed)) {
+                artifactMainStats[type] = line.slice(prefixed.length);
+                break;
+              }
             }
           }
         });
