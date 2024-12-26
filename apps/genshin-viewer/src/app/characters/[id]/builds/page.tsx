@@ -170,6 +170,18 @@ const CharacterBuildPage = ({
                               {build.artifactSubStats}
                             </div>
                           </div>
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-bold"> • Talent Priority</div>
+                            <div className="whitespace-pre-wrap select-text">
+                              {build.talentPriority}
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-bold"> • Ability Tips</div>
+                            <div className="whitespace-pre-wrap select-text">
+                              {build.abilityTips}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     );
