@@ -31,6 +31,9 @@ const WeaponViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
                     weaponType={weapon.weaponType}
                     icon={weapon.icon}
                     descHash={weapon.descHash}
+                    substatInfo={
+                      "substatInfo" in weapon ? weapon.substatInfo : undefined
+                    }
                   />
                 </div>
               </div>

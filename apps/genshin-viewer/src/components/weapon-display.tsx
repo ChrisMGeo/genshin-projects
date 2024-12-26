@@ -6,6 +6,8 @@ import {
   giMaxLevelForAscension,
   LevelRange,
 } from "@repo/gi-data/ascension-info";
+import { GIFightPropInGame } from "@repo/gi-data/fight-props";
+import { fightPropsInfo } from "@repo/gi-data/fight-props-info";
 import { WeaponInfo } from "@repo/gi-data/generators/weapon";
 import {
   weaponAscensionInfo,
@@ -32,6 +34,7 @@ type WeaponDisplayProps = DeepReadonly<
     | "icon"
     | "descHash"
     | "promoteId"
+    | "substatInfo"
   >
 >;
 const WeaponDisplay = ({
@@ -42,6 +45,7 @@ const WeaponDisplay = ({
   promoteId,
   icon,
   descHash,
+  substatInfo,
 }: WeaponDisplayProps) => {
   const t = useTranslations();
 
@@ -68,6 +72,10 @@ const WeaponDisplay = ({
     atkInfo.initial *
       weaponStatCurves[atkInfo.curve as CurveName][level.level] +
     ascensionInfo[finalAscension.toString() as AscensionInfoKey];
+  const finalSubstat = substatInfo
+    ? substatInfo.info.initial *
+      weaponStatCurves[substatInfo.info.curve as CurveName][level.level]
+    : 0;
 
   useEffect(() => {
     setAscendIfPossible(false);
@@ -87,6 +95,18 @@ const WeaponDisplay = ({
                   {Math.round(finalAtk)}
                 </div>
               </div>
+              {substatInfo && (
+                <div>
+                  <div className="text-opacity-70 md:text-lg lg:text-lg xl:text-xl">
+                    {t(
+                      `dm.${fightPropsInfo[substatInfo.type as GIFightPropInGame]}`
+                    )}
+                  </div>
+                  <div className="text-xl lg:text-2xl xl:text-3xl">
+                    {finalSubstat}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="mt-auto flex flex-row gap-1 pb-4 pl-4">
