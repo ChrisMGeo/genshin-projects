@@ -78,50 +78,61 @@ const CharacterBuildPage = ({
                               {build.artifactSets.map(
                                 (artifactSetConfig, i) => {
                                   let content: ReactNode[] = [];
+                                  let heading: string | undefined = undefined;
                                   switch (artifactSetConfig.type) {
                                     case "single":
                                       {
-                                        switch (artifactSetConfig.option.type) {
-                                          case "set":
-                                            content = [
-                                              <ArtifactSetView
-                                                id={artifactSetConfig.option.id}
-                                                num={4}
-                                                key={0}
-                                              />,
-                                            ];
-                                            break;
-                                          case "group":
-                                            content = [
-                                              <ArtifactGroupView
-                                                id={artifactSetConfig.option.id}
-                                                num={4}
-                                                key={0}
-                                              />,
-                                            ];
-                                            break;
-                                        }
-                                      }
-                                      break;
-                                    case "double":
-                                      {
+                                        content = [
+                                          <CorrectArtifactView
+                                            artifact={artifactSetConfig.option}
+                                            num={4}
+                                            key={0}
+                                          />,
+                                        ];
                                       }
                                       break;
                                     case "choose-2":
+                                      heading =
+                                        "Choose Two from the following:";
+                                    case "double":
                                       {
+                                        artifactSetConfig.options.forEach(
+                                          (opt, i) => {
+                                            content.push(
+                                              <CorrectArtifactView
+                                                artifact={opt}
+                                                key={i}
+                                                num={2}
+                                              />
+                                            );
+                                          }
+                                        );
                                       }
                                       break;
                                   }
                                   return (
-                                    <div
-                                      className="mt-0.5 flex flex-row flex-wrap gap-2.5"
-                                      key={i}
-                                    >
-                                      {content}
-                                    </div>
+                                    <>
+                                      {heading && (
+                                        <div className="font-semibold">
+                                          {heading}
+                                        </div>
+                                      )}
+                                      <div
+                                        className="mt-0.5 flex flex-row flex-wrap gap-2.5"
+                                        key={i}
+                                      >
+                                        {content}
+                                      </div>
+                                    </>
                                   );
                                 }
                               )}
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-bold">
+                              {" "}
+                              • Main Stats Priority
                             </div>
                           </div>
                         </div>
@@ -165,13 +176,29 @@ const ArtifactGroupView = ({
 }) => {
   const setInfo = artifactGroups.find((e) => e.id === id)!;
   return (
-    <Link href={`/artifacts/${id}`} className="relative">
-      <span className="absolute right-0 m-1 rounded-md bg-black text-white px-1.5 py-1 text-xs font-bold">
-        {num}
+    <div className="flex h-16 items-center rounded-md border-2 px-4">
+      <span>
+        {setInfo.name} ({num})
       </span>
-      {setInfo.name}
-    </Link>
+    </div>
   );
+};
+
+const CorrectArtifactView = ({
+  artifact: { type, id },
+  num,
+}: {
+  artifact:
+    | { type: "set"; id: ArtifactSetKey }
+    | { type: "group"; id: ArtifactGroupKey };
+  num: number;
+}) => {
+  switch (type) {
+    case "group":
+      return <ArtifactGroupView id={id} num={num} />;
+    case "set":
+      return <ArtifactSetView id={id} num={num} />;
+  }
 };
 
 export default CharacterBuildPage;
