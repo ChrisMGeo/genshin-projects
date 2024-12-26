@@ -55,7 +55,8 @@ export const getWeaponInfos = (): {
   let relevantHashes = new Set<number>();
   let weaponMap: { [key: string]: WeaponInfo } = {};
 
-  for (const { weaponId } of WeaponCodex) {
+  for (const { weaponId, isDisuse } of WeaponCodex) {
+    if (isDisuse) continue;
     const {
       rankLevel: rarity,
       nameTextMapHash: nameHash,
