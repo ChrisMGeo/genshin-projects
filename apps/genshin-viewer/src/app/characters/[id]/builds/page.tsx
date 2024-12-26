@@ -12,6 +12,7 @@ import {
   artifactInfo,
   ArtifactSetKey,
 } from "@repo/gi-data/artifact-info";
+import { artifactPieceTypeIcon } from "@repo/gi-data/artifact-piece-types";
 
 const CharacterBuildPage = ({
   params,
@@ -133,6 +134,40 @@ const CharacterBuildPage = ({
                             <div className="font-bold">
                               {" "}
                               • Main Stats Priority
+                            </div>
+                            <div className="whitespace-pre-wrap select-text">
+                              {(["sands", "goblet", "circlet"] as const).map(
+                                (piece, i) => {
+                                  return (
+                                    build?.artifactMainStats?.[piece] && (
+                                      <div
+                                        className="flex flex-row gap-2.5 items-center"
+                                        key={i}
+                                      >
+                                        <Image
+                                          src={`https://gi.yatta.moe/assets/UI/${artifactPieceTypeIcon(piece)}.png`}
+                                          alt={piece}
+                                          width="64"
+                                          height="64"
+                                          className="inline-block w-8 h-8"
+                                        />
+                                        <span>
+                                          {build.artifactMainStats[piece]}
+                                        </span>
+                                      </div>
+                                    )
+                                  );
+                                }
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <div className="font-bold">
+                              {" "}
+                              • Substats Priority
+                            </div>
+                            <div className="whitespace-pre-wrap select-text">
+                              {build.artifactSubStats}
                             </div>
                           </div>
                         </div>
