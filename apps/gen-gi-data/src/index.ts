@@ -167,6 +167,11 @@ const artifactInfoLines = [
     sets: ["DefendersWill", "HuskOfOpulentDreams"],
   },
   {
+    id: "15-hydro",
+    name: "15% Hydro DMG",
+    sets: ["HeartOfDepth", "NymphsDream"],
+  },
+  {
     id: "20-hp",
     name: "20% HP",
     sets: ["VourukashasGlow", "TenacityOfTheMillelith"],
