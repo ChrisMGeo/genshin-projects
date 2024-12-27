@@ -190,7 +190,7 @@ const ArtifactSetView = ({ id, num }: { id: ArtifactSetKey; num: number }) => {
         alt="I"
         width="256"
         height="256"
-        className="h-16 w-16 rounded-md"
+        className="h-16 w-16 rounded-md border-2"
       />
     </Link>
   );
