@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ReactNode, use } from "react";
 // import UnityRichTextComponent from "@repo/unity-richtext-react/component";
 import { characterBuilds } from "@repo/gi-helper-data/builds";
-import { weaponInfo } from "@repo/gi-data/weapon-info";
+import { weaponInfo, WeaponKey } from "@repo/gi-data/weapon-info";
 import Link from "next/link";
 import {
   ArtifactGroupKey,
@@ -19,7 +19,6 @@ const CharacterBuildPage = ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  const t = useTranslations();
   const { id: _id } = use(params);
   const id = _id as CharacterKey;
   //   const character = characterInfo.characterMap[id];
@@ -48,26 +47,9 @@ const CharacterBuildPage = ({
                           <div className="flex flex-col gap-0.5">
                             <div className="font-bold"> • Best Weapon(s)</div>
                             <div className="whitespace-pre-wrap select-text flex flex-col">
-                              {build?.weapons?.map((weaponKey, i) => {
-                                if (!weaponInfo?.weaponMap?.[weaponKey])
-                                  return undefined;
-                                const { icon, id, nameHash } =
-                                  weaponInfo.weaponMap[weaponKey];
+                              {build.weapons.map((weaponKey, i) => {
                                 return (
-                                  <Link
-                                    key={i}
-                                    href={`/weapons/${id}`}
-                                    className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex w-fit"
-                                  >
-                                    <span>{t(`dm.${nameHash}`)}</span>
-                                    <Image
-                                      src={`https://gi.yatta.moe/assets/UI/${icon}.png`}
-                                      alt="Weapon"
-                                      width="128"
-                                      height="128"
-                                      className="w-6 h-6"
-                                    />
-                                  </Link>
+                                  <WeaponView weaponKey={weaponKey} key={i} />
                                 );
                               })}
                             </div>
@@ -248,6 +230,26 @@ const CorrectArtifactView = ({
     case "set":
       return <ArtifactSetView id={id} num={num} />;
   }
+};
+
+const WeaponView = ({ weaponKey }: { weaponKey: WeaponKey }) => {
+  const t = useTranslations("dm");
+  const { icon, nameHash } = weaponInfo.weaponMap[weaponKey];
+  return (
+    <Link
+      href={`/weapons/${weaponKey}`}
+      className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex w-fit"
+    >
+      <span>{t(`${nameHash}`)}</span>
+      <Image
+        src={`https://gi.yatta.moe/assets/UI/${icon}.png`}
+        alt="Weapon"
+        width="128"
+        height="128"
+        className="w-6 h-6"
+      />
+    </Link>
+  );
 };
 
 export default CharacterBuildPage;
