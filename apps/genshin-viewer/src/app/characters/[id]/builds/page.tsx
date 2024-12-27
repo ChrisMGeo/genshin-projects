@@ -49,7 +49,9 @@ const CharacterBuildPage = ({
                             <div className="whitespace-pre-wrap select-text flex flex-col">
                               {build.weapons.map((weaponKey, i) => {
                                 return (
-                                  <WeaponView weaponKey={weaponKey} key={i} />
+                                  weaponInfo?.weaponMap[weaponKey] && (
+                                    <WeaponView weaponKey={weaponKey} key={i} />
+                                  )
                                 );
                               })}
                             </div>
