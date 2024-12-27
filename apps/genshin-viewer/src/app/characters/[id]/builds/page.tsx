@@ -232,20 +232,36 @@ const CorrectArtifactView = ({
 
 const WeaponView = ({ weaponKey }: { weaponKey: WeaponKey }) => {
   const t = useTranslations("dm");
-  const { icon, nameHash } = weaponInfo.weaponMap[weaponKey];
+  const weapon = weaponInfo.weaponMap[weaponKey];
+  const { icon, nameHash } = weapon;
+  const substatInfo = "substatInfo" in weapon ? weapon.substatInfo : undefined;
   return (
     <Link
       href={`/weapons/${weaponKey}`}
-      className="duration-100 ease-in-out gap-1.5 hover:scale-95 items-center transform transition-transform inline-flex w-fit"
+      className="flex flex-row items-center w-fit mt-0.5"
     >
-      <span>{t(`${nameHash}`)}</span>
-      <Image
-        src={`https://gi.yatta.moe/assets/UI/${icon}.png`}
-        alt="Weapon"
-        width="128"
-        height="128"
-        className="w-6 h-6"
-      />
+      <div className="relative">
+        {substatInfo && (
+          <span className="absolute right-0 m-1 rounded-md text-xs font-bold bg-white border-2 p-0.5">
+            <Image
+              src={`/gi-stat-icons/${substatInfo.type}.svg`}
+              alt="Substat Icon"
+              unoptimized
+              width="64"
+              height="64"
+              className="h-4 w-4"
+            />
+          </span>
+        )}
+        <Image
+          src={`https://gi.yatta.moe/assets/UI/${icon}.png`}
+          alt="I"
+          width="256"
+          height="256"
+          className="h-16 w-16 rounded-md border-2"
+        />
+      </div>
+      <span className="ml-1.5">{t(`${nameHash}`)}</span>
     </Link>
   );
 };
