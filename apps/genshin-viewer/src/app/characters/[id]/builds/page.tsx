@@ -81,16 +81,14 @@ const CharacterBuildPage = ({
                                         "Choose Two from the following:";
                                     case "double":
                                       {
-                                        artifactSetConfig.options.forEach(
-                                          (opt, i) => {
-                                            content.push(
-                                              <CorrectArtifactView
-                                                artifact={opt}
-                                                key={i}
-                                                num={2}
-                                              />
-                                            );
-                                          }
+                                        content = artifactSetConfig.options.map(
+                                          (opt, i) => (
+                                            <CorrectArtifactView
+                                              artifact={opt}
+                                              key={i}
+                                              num={2}
+                                            />
+                                          )
                                         );
                                       }
                                       break;
