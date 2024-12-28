@@ -69,7 +69,28 @@ const SideBar = () => {
             }
           )}
         </div>
-        <div className="flex w-full h-16 flex-row items-center justify-evenly md:hidden lg:hidden text-xs select-none"></div>
+        <div className="flex w-full h-16 flex-row items-center justify-evenly md:hidden lg:hidden text-xs select-none">
+          {sideBarLinks.map(
+            ({ href, name, svg: { viewBox }, path: { d } }, i) => {
+              return (
+                <Link
+                  href={href}
+                  key={i}
+                  className="w-24 h-14 flex flex-col items-center justify-center gap-1"
+                >
+                  <svg
+                    className="h-4 w-4 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox={viewBox}
+                  >
+                    <path d={d}></path>
+                  </svg>
+                  <span>{name}</span>
+                </Link>
+              );
+            }
+          )}
+        </div>
       </nav>
     </div>
   );
