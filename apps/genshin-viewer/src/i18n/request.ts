@@ -5,19 +5,24 @@ import {
   giLanguageToUTSMap,
   GIUTSLanguage,
 } from "@repo/gi-data/languages";
+import { cookies } from "next/headers";
 
 export default getRequestConfig(async () => {
-  // This typically corresponds to the `[locale]` segment
-  const locale = "en";
-
-  const validLocale = locale as GIUTSLanguage;
+  const cookieStore = await cookies();
+  const res = cookieStore.get("NEXT_LOCALE");
+  const locale: GIUTSLanguage = res
+    ? [...(Object.values(giLanguageToUTSMap) as string[])].includes(res.value)
+      ? (res.value as GIUTSLanguage)
+      : "en"
+    : "en";
 
   return {
     locale,
     messages: {
+      ui: (await import(`../../messages/${locale}.json`)).default,
       dm: getTextMap(
         (Object.keys(giLanguageToUTSMap) as GILanguage[]).find(
-          (k) => giLanguageToUTSMap[k] === validLocale
+          (k) => giLanguageToUTSMap[k] === locale
         )!
       ),
     },
