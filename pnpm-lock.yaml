@@ -40,6 +40,25 @@ importers:
         specifier: latest
         version: 5.7.2
 
+  apps/gen-gi-data-types:
+    dependencies:
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      json-to-ts:
+        specifier: ^2.1.0
+        version: 2.1.0
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+      typescript:
+        specifier: latest
+        version: 5.7.2
+
   apps/gen-gi-helper-data:
     dependencies:
       '@repo/gi-data':

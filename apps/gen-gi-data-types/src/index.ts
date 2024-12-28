@@ -1,12 +1,13 @@
-import type { PlopTypes } from "@turbo/gen";
 import { existsSync, readdirSync, readFileSync } from "fs";
 import path from "path";
 import JsonToTS from "json-to-ts";
+import { writeFileSyncRecursive } from "@repo/utils/fs";
+import { pascalCaseToKebabCase } from "@repo/utils/pascal-to-kebab";
 
-const REPO_ROOT = path.resolve(".", "packages", "gi-data");
-
+const APP_ROOT = path.resolve(".");
+const MONOREPO_ROOT = path.resolve(APP_ROOT, "..", "..");
+const REPO_ROOT = path.join(MONOREPO_ROOT, "packages", "gi-data");
 const GI_DM_ROOT = path.join(REPO_ROOT, "AnimeGameData");
-
 const EBO = path.join(GI_DM_ROOT, "ExcelBinOutput");
 
 const getEBOFilePath = (fileName: string) => path.join(EBO, fileName);
@@ -23,9 +24,7 @@ const getParsedEBOFile = (fileName: string) => {
 
 // Learn more about Turborepo Generators at https://turbo.build/repo/docs/core-concepts/monorepos/code-generation
 
-const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
-  const { pascalCaseToKebabCase } = await import("@repo/utils/pascal-to-kebab");
-  const { writeFileSyncRecursive } = await import("@repo/utils/fs");
+const main = async () => {
   let EBOJsonFiles: string[] = [];
   try {
     EBOJsonFiles = readdirSync(EBO).filter((f) => path.extname(f) === ".json");
@@ -74,10 +73,4 @@ const generateGIDataTypes: PlopTypes.CustomActionFunction = async (answers) => {
   return "Finished generating types!";
 };
 
-export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  plop.setGenerator("gi-data-types", {
-    description: "Generates types for `AnimeGameData/ExcelBinOutput/*.json`",
-    prompts: [],
-    actions: [generateGIDataTypes],
-  });
-}
+main();

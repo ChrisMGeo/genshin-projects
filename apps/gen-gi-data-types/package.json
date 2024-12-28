@@ -1,0 +1,17 @@
+{
+  "name": "gen-gi-data-types",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "generate": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@repo/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "json-to-ts": "^2.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "latest"
+  }
+}
