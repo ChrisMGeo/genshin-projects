@@ -32,12 +32,7 @@ To generate `@repo/gi-data/src/generated/*`, run the following:
 
 ```bash
 pnpm i
-pnpm --filter utils run build
-pnpm --filter gen-gi-data-types run generate
-pnpm --filter gi-data run build
-pnpm --filter gen-gi-data run generate
-pnpm --filter gi-data run build
-pnpm --filter gen-gi-helper-data run generate
+pnpm run generate-everything
 ```
 
 ### Build
