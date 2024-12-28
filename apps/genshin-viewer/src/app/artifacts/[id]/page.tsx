@@ -15,7 +15,7 @@ export function generateStaticParams() {
 const WeaponViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id: _id } = use(params);
   if (!Object.keys(artifactInfo.artifactSetMap).includes(_id)) {
-    redirect("/characters");
+    redirect("/artifacts");
   }
   const id = _id as ArtifactSetKey;
   const artifactSet = artifactInfo.artifactSetMap[id];
