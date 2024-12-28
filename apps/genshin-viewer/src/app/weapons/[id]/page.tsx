@@ -4,6 +4,12 @@ import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import WeaponDisplay from "@/components/weapon-display";
 
+export function generateStaticParams() {
+  return (Object.keys(weaponInfo.weaponMap) as WeaponKey[]).map((id) => ({
+    id,
+  }));
+}
+
 const WeaponViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id: _id } = use(params);
   if (!Object.keys(weaponInfo.weaponMap).includes(_id)) {
