@@ -36,7 +36,6 @@ const SideBar = () => {
   return (
     <div className="fixed z-20">
       <div></div>
-      <div className="hidden fixed relative inline-block h-screen w-screen justify-center overflow-y-scroll overscroll-y-contain"></div>
       <nav
         className="duration-400 group fixed bottom-0 w-full select-none overflow-y-scroll border-t-4 border-opacity-60 lg:transition-width lg:ease-in-out md:h-full md:w-20 md:border-t-0 md:border-r-4 md:hover:w-48 lg:h-screen lg:w-20 lg:border-t-0 lg:border-r-4 lg:hover:w-48 bg-white"
         style={{ scrollbarWidth: "none" }}
