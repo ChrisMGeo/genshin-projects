@@ -13,7 +13,7 @@ export function generateStaticParams() {
 const WeaponViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id: _id } = use(params);
   if (!Object.keys(weaponInfo.weaponMap).includes(_id)) {
-    redirect("/characters");
+    redirect("/weapons");
   }
   const id = _id as WeaponKey;
   const weapon = weaponInfo.weaponMap[id];
