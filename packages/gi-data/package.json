@@ -71,6 +71,14 @@
     "./relevant-textmaps": {
       "types": "./src/generated/relevant-textmap/index.ts",
       "default": "./dist/generated/relevant-textmap/index.js"
+    },
+    "./device-types": {
+      "types": "./src/consts/device-types.ts",
+      "default": "./dist/consts/device-types.js"
+    },
+    "./traveler-gender": {
+      "types": "./src/consts/traveler-gender.ts",
+      "default": "./dist/consts/traveler-gender.js"
     }
   },
   "dependencies": {
