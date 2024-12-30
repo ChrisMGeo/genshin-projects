@@ -9,7 +9,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "generate-everything": "pnpm --filter utils run build && pnpm --filter gen-gi-data-types run generate && pnpm --filter gi-data run build && pnpm --filter gen-gi-data run generate && pnpm --filter gi-data run build && pnpm --filter gen-gi-helper-data run generate && pnpm run build"
+    "generate-everything": "pnpm --filter utils run build && pnpm --filter gen-gi-data-types run generate && pnpm --filter gi-data run build && pnpm --filter gen-gi-data run generate && pnpm --filter gi-data run build && pnpm --filter gen-gi-helper-data run generate"
   },
   "devDependencies": {
     "@types/node": "^22.9.3",
