@@ -18,6 +18,7 @@ import { useTranslations } from "next-intl";
 import clsx from "clsx";
 import { getVisionIcon } from "@repo/gi-data/vision-types";
 import Image from "next/image";
+import { getWeaponTypeIcon } from "@repo/gi-data/weapon-types";
 
 type CurveName = keyof typeof characterStatCurves;
 type PromoteId = keyof typeof characterAscensionInfo;
@@ -176,7 +177,16 @@ const CharacterStatsDisplay = ({
             </tr>
             <tr>
               <td>Weapon</td>
-              <td className="text-right">{weaponType}</td>
+              <td className="text-right">
+                <Image
+                  src={`https://gi.yatta.moe/assets/UI/${getWeaponTypeIcon(weaponType)}.png`}
+                  loading="eager"
+                  alt="Weapon Type"
+                  width="128"
+                  height="128"
+                  className="ml-auto w-8 p-0.5 drop-shadow-sm"
+                />
+              </td>
             </tr>
             <tr>
               <td>Constellation</td>

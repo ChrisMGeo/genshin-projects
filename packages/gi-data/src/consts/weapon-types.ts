@@ -1,3 +1,5 @@
+import { capitalizeFirstLetter } from "@repo/utils/capitalize-first-letter";
+
 export const giWeaponTypeConversionMap = {
   WEAPON_SWORD_ONE_HAND: "sword",
   WEAPON_CLAYMORE: "claymore",
@@ -14,3 +16,15 @@ export type GIWeaponType =
 
 export const translateWeaponType = (type: GIWeaponTypeInGame) =>
   giWeaponTypeConversionMap[type];
+export const getWeaponTypeIcon = (weaponType: GIWeaponType): string => {
+  let inGameWeaponType = "";
+  switch (weaponType) {
+    case "polearm":
+      inGameWeaponType = "Pole";
+      break;
+    default:
+      inGameWeaponType = capitalizeFirstLetter(weaponType);
+      break;
+  }
+  return `UI_GachaTypeIcon_${inGameWeaponType}`;
+};
