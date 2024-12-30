@@ -168,6 +168,7 @@ const CharacterStatsDisplay = ({
               <td className="text-right">
                 <Image
                   src={`https://gi.yatta.moe/assets/UI/${getVisionIcon(vision)}.png`}
+                  loading="eager"
                   width="64"
                   height="64"
                   alt="Avatar Element"
