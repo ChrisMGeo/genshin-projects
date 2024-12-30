@@ -16,6 +16,8 @@ import { DeepReadonly } from "next/dist/shared/lib/deep-readonly";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
+import { getVisionIcon } from "@repo/gi-data/vision-types";
+import Image from "next/image";
 
 type CurveName = keyof typeof characterStatCurves;
 type PromoteId = keyof typeof characterAscensionInfo;
@@ -162,7 +164,15 @@ const CharacterStatsDisplay = ({
           <tbody>
             <tr>
               <td>Element</td>
-              <td className="text-right">{vision}</td>
+              <td className="text-right">
+                <Image
+                  src={`https://gi.yatta.moe/assets/UI/${getVisionIcon(vision)}.png`}
+                  width="64"
+                  height="64"
+                  alt="Avatar Element"
+                  className="ml-auto w-8 p-0.5"
+                />
+              </td>
             </tr>
             <tr>
               <td>Weapon</td>
