@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { use } from "react";
 import UnityRichTextComponent from "@repo/unity-richtext-react/component";
+import { translateDynamicText } from "@repo/gi-data/textmaps";
 
 const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const t = useTranslations();
@@ -39,7 +40,9 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
               </div>
               <div className="h-full flex flex-col gap-4 rounded-b-2xl border-r-2 border-l-2 border-b-2 bg-white p-4 md:mx-0 lg:mx-0 xl:mx-0">
                 <UnityRichTextComponent>
-                  {t.raw(`dm.${s.descHash}`).split("\\n").join("\n")}
+                  {translateDynamicText(
+                    t.raw(`dm.${s.descHash}`).split("\\n").join("\n")
+                  ) ?? ""}
                 </UnityRichTextComponent>
               </div>
             </div>
