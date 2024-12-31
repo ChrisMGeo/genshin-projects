@@ -79,6 +79,10 @@
     "./traveler-gender": {
       "types": "./src/consts/traveler-gender.ts",
       "default": "./dist/consts/traveler-gender.js"
+    },
+    "./textmap-util": {
+      "types": "./src/consts/textmap-util.ts",
+      "default": "./dist/consts/textmap-util.js"
     }
   },
   "dependencies": {

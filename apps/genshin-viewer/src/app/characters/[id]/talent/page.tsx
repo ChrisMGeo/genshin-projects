@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { use } from "react";
 import UnityRichTextComponent from "@repo/unity-richtext-react/component";
-import { translateDynamicText } from "@repo/gi-data/textmaps";
+import { translateDynamicText } from "@repo/gi-data/textmap-util";
 
 const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const t = useTranslations();
