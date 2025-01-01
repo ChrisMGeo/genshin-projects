@@ -52,8 +52,7 @@ export const translateDynamicText = (
   options?: Partial<GISimplifiedDynamicVariables>,
   overrides?: Record<string, any>
 ): string => {
-  if (!textMapString.startsWith("#"))
-    textMapString = textMapString.substring(1);
+  if (!textMapString.startsWith("#")) return textMapString;
   const finalOptions = { ...defaultOptions, ...options };
   const variableMap = {
     ...generateVariableMapFromOptions(finalOptions),

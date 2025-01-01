@@ -42,7 +42,7 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
                 <UnityRichTextComponent>
                   {translateDynamicText(
                     t.raw(`dm.${s.descHash}`).split("\\n").join("\n")
-                  ) ?? ""}
+                  )}
                 </UnityRichTextComponent>
               </div>
             </div>
