@@ -1,4 +1,8 @@
-import { GIDeviceType, giDeviceTypes } from "./device-types.js";
+import {
+  convertDeviceToLayout,
+  GIDeviceType,
+  giLayoutTypes,
+} from "./device-types.js";
 import { GITravelerGender } from "./traveler-gender.js";
 
 export type GISimplifiedDynamicVariables = {
@@ -10,7 +14,7 @@ export type GISimplifiedDynamicVariables = {
 export const defaultOptions: GISimplifiedDynamicVariables = {
   travelerGender: "M",
   travelerNickname: "Traveler",
-  device: "PC",
+  device: "Windows",
 };
 
 export const generateVariableMapFromOptions = (
@@ -33,9 +37,10 @@ export const generateVariableMapFromOptions = (
   // nickname logic
   res["NICKNAME"] = options.travelerNickname;
   // device logic
-  giDeviceTypes.forEach((deviceType) => {
-    res[`LAYOUT_${deviceType}`] = deviceType === options.device;
+  giLayoutTypes.forEach((layoutType) => {
+    res[layoutType] = layoutType === convertDeviceToLayout(options.device);
   });
+  res["PLATFORM"] = options.device;
   // other consts
   res["SPACE"] = " ";
   res["NON_BREAK_SPACE"] = "\u00A0";
