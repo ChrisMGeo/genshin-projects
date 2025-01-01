@@ -1,62 +1,73 @@
-import UnityParser from "./utils/unity-parser";
+import colorToHex from "./utils/colors";
 
 type UnityRichTextProps = {
   children: string;
-  onBold?: () => object;
-  onItalic?: () => object;
-  onSize?: (size: number) => object;
-  onColor?: (color: string) => object;
 };
 
-const UnityRichTextComponent = ({
-  children,
-  onBold = () => ({ fontWeight: "bold" }),
-  onItalic = () => ({ fontStyle: "italic" }),
-  onSize = (size) => ({ fontSize: `${size}px` }),
-  onColor = (color) => ({ color: color }),
-}: UnityRichTextProps) => {
-  const parser = new UnityParser();
-
-  const parseElements = (elements: any | any[]) => {
-    return elements.map((element: any) => {
-      if (element.type === "text") {
-        return element.text;
-      } else if (element.type === "element") {
-        return createElementSpan(element);
-      }
-    });
-  };
-  const createElementSpan = (element: any) => {
-    let style;
-    switch (element.name) {
-      case "b":
-        style = onBold();
-        break;
-      case "i":
-        style = onItalic();
-        break;
-      case "size":
-        style = onSize(element.attributes.value);
-        break;
-      case "color":
-        style = onColor(element.attributes.value);
-        break;
-      default:
-        console.error("unexpected tag");
-        break;
-    }
-
-    return (
-      <span key={element.key} style={style}>
-        {parseElements(element.elements)}
-      </span>
-    );
-  };
-
-  const parsedChildren = parser.parse(children);
-
+const UnityRichTextComponent = ({ children }: UnityRichTextProps) => {
   return (
-    <span className="whitespace-pre-wrap">{parseElements(parsedChildren)}</span>
+    <span className="whitespace-pre-wrap">{parseCustomTemplate(children)}</span>
   );
 };
 export default UnityRichTextComponent;
+
+// Helper function to parse a color tag
+const parseColorTag = (attr: string | undefined) => {
+  const match = attr?.match(/=([^>]+)/);
+  return match ? colorToHex(match[1]!) : "inherit";
+};
+
+// Main parsing function
+const parseCustomTemplate = (input: string) => {
+  const tagRegex = /<(?<tag>\w+)(?<attr>[^>]*)>(?<content>.*?)<\/\1>/gs;
+  const components = [];
+
+  let match;
+  let lastIndex = 0;
+
+  while ((match = tagRegex.exec(input)) !== null) {
+    const { tag: _tag, attr: _attr, content: _content } = match.groups!;
+    const tag = _tag!;
+    const attr = _attr!;
+    const content = _content!;
+    const beforeText = input.slice(lastIndex, match.index);
+
+    // Push any plain text before the match
+    if (beforeText) {
+      components.push(beforeText);
+    }
+
+    // Handle supported tags
+    switch (tag) {
+      case "color":
+        components.push(
+          <span style={{ color: parseColorTag(attr) }}>{content}</span>
+        );
+        break;
+      case "b":
+        components.push(<b>{content}</b>);
+        break;
+      case "i":
+        components.push(<i>{content}</i>);
+        break;
+      case "size":
+        components.push(
+          <span style={{ fontSize: `${content}px` }}>{content}</span>
+        );
+        break;
+      default:
+        // Fallback for unsupported tags
+        components.push(content);
+        break;
+    }
+
+    lastIndex = tagRegex.lastIndex;
+  }
+
+  // Push any remaining plain text after the last match
+  if (lastIndex < input.length) {
+    components.push(input.slice(lastIndex));
+  }
+
+  return components;
+};
