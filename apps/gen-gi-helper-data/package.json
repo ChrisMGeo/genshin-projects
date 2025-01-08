@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "generate-gi-helper-data": "pnpm with-env tsx src/index.ts"
+    "generate-gi-helper-data": "tsx src/index.ts"
   },
   "dependencies": {
     "@repo/gi-data": "workspace:*",
