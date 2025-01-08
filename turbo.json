@@ -8,7 +8,7 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "@repo/gi-helper-data#build": {
-      "inputs": ["src/builds.ts"]
+      "cache": false
     },
     "generate-gi-data-types": {
       "dependsOn": ["^generate-gi-data-types"]
