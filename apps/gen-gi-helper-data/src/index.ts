@@ -315,7 +315,6 @@ async function main() {
     );
     const character = {
       id,
-      weaponType,
       notes,
       builds: modifiedBuilds,
     };
