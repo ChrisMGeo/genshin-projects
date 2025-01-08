@@ -15,7 +15,7 @@
     },
     "generate-gi-helper-data": {
       "dependsOn": ["^generate-gi-helper-data"],
-      "inputs": [".env*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "env": [
         "GOOGLEAPIS_TYPE",
         "GOOGLEAPIS_PROJECT_ID",
