@@ -16,7 +16,7 @@
     },
     "generate-gi-data": {
       "dependsOn": ["^generate-gi-data"],
-      "outputs": ["../../packages/gi-data/src/generated/**"]
+      "outputs": ["../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "generate-gi-helper-data": {
       "dependsOn": ["^generate-gi-helper-data"],
