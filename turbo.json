@@ -11,10 +11,12 @@
       "cache": false
     },
     "generate-gi-data-types": {
-      "dependsOn": ["^generate-gi-data-types"]
+      "dependsOn": ["^generate-gi-data-types"],
+      "outputs": ["../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "generate-gi-data": {
-      "dependsOn": ["^generate-gi-data"]
+      "dependsOn": ["^generate-gi-data"],
+      "outputs": ["../../packages/gi-data/src/generated/**"]
     },
     "generate-gi-helper-data": {
       "dependsOn": ["^generate-gi-helper-data"],
@@ -30,7 +32,8 @@
         "GOOGLEAPIS_TOKEN_URI",
         "GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL",
         "GOOGLEAPIS_CLIENT_X509_CERT_URL"
-      ]
+      ],
+      "outputs": ["../../packages/gi-helper-data/src/builds.ts"]
     },
     "lint": {
       "dependsOn": ["^lint"]
