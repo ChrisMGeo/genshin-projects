@@ -191,6 +191,7 @@ async function main() {
       console.log(`viewName: ${viewName} not found`);
       continue;
     }
+    console.log(`Scanning for ${viewName}`);
     const id = searchRes.id;
 
     let builds: UnmodifiedCharacterBuild[] = [];
@@ -205,6 +206,7 @@ async function main() {
       build++
     ) {
       const buildValues = characterValues.values[build]!.slice(1);
+      console.log(buildValues[0]);
       const buildObject = {
         name: buildValues[0] ?? "",
         weapons: buildValues[1] ?? builds[builds.length - 1]?.weapons ?? "",
