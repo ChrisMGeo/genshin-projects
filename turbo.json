@@ -7,6 +7,28 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "generate-gi-data-types": {
+      "dependsOn": ["^generate-gi-data-types"]
+    },
+    "generate-gi-data": {
+      "dependsOn": ["^generate-gi-data"]
+    },
+    "generate-gi-helper-data": {
+      "dependsOn": ["^generate-gi-helper-data"],
+      "inputs": [".env*"],
+      "env": [
+        "GOOGLEAPIS_TYPE",
+        "GOOGLEAPIS_PROJECT_ID",
+        "GOOGLEAPIS_PRIVATE_KEY_ID",
+        "GOOGLEAPIS_PRIVATE_KEY",
+        "GOOGLEAPIS_CLIENT_EMAIL",
+        "GOOGLEAPIS_CLIENT_ID",
+        "GOOGLEAPIS_AUTH_URI",
+        "GOOGLEAPIS_TOKEN_URI",
+        "GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL",
+        "GOOGLEAPIS_CLIENT_X509_CERT_URL"
+      ]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
