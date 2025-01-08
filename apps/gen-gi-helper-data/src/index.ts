@@ -192,7 +192,6 @@ async function main() {
       continue;
     }
     const id = searchRes.id;
-    const vision = searchRes.vision;
 
     let builds: UnmodifiedCharacterBuild[] = [];
     const weaponType = searchRes.weaponType;
@@ -316,7 +315,6 @@ async function main() {
     );
     const character = {
       id,
-      vision,
       weaponType,
       notes,
       builds: modifiedBuilds,
