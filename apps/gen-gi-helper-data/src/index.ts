@@ -200,8 +200,12 @@ async function main() {
       ? characterValues.values.slice(-1)[0]![1]
       : "";
     if (!characterValues.values) continue;
+    let initialBuildRow = 4; // 2 rows for name + 2 for role
+    if (id === "Mavuika") {
+      initialBuildRow = 3; // Has only 1 row for name
+    }
     for (
-      let build = 4; // start at 4 to skip the first 4 rows which don't contain build info
+      let build = initialBuildRow;
       build < characterValues.values.length - 1;
       build++
     ) {
