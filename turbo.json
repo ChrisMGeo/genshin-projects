@@ -10,16 +10,18 @@
     "@repo/gi-helper-data#build": {
       "cache": false
     },
-    "generate-gi-data-types": {
-      "dependsOn": ["^generate-gi-data-types"],
+    "generate-files": {
+      "dependsOn": ["^generate-files"]
+    },
+    "gen-gi-data-types#generate-files": {
+      "dependsOn": ["@repo/utils#build"],
       "outputs": ["../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
-    "generate-gi-data": {
-      "dependsOn": ["^generate-gi-data"],
+    "gen-gi-data#generate-files": {
+      "dependsOn": ["gen-gi-data-types#generate-files", "@repo/gi-data#build"],
       "outputs": ["../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
-    "generate-gi-helper-data": {
-      "dependsOn": ["^generate-gi-helper-data"],
+    "gen-gi-helper-data#generate-files": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "env": [
         "GOOGLEAPIS_TYPE",
@@ -33,6 +35,7 @@
         "GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL",
         "GOOGLEAPIS_CLIENT_X509_CERT_URL"
       ],
+      "dependsOn": ["gen-gi-data#generate-files", "@repo/gi-data#build"],
       "outputs": ["../../packages/gi-helper-data/src/builds.ts"]
     },
     "lint": {

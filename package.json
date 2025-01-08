@@ -9,7 +9,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "generate-everything": "turbo build --filter @repo/utils && turbo generate-gi-data-types && turbo build --filter @repo/gi-data && turbo generate-gi-data && turbo build --filter @repo/gi-data && turbo generate-gi-helper-data"
+    "generate-everything": "turbo generate-files"
   },
   "devDependencies": {
     "@types/node": "^22.9.3",

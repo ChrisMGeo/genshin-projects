@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "generate-gi-data-types": "tsx src/index.ts"
+    "generate-files": "tsx src/index.ts"
   },
   "dependencies": {
     "@repo/utils": "workspace:*"
