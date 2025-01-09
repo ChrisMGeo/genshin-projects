@@ -48,7 +48,7 @@ const ArtifactSetDisplay = ({
                     />
                   </span>
                   <span className="flex items-center rounded-md">
-                    {pieceType}
+                    {t(`ui.common.artifact.${pieceType}`)}
                   </span>
                 </div>
                 <div className="text-opacity-70 md:text-lg lg:text-lg xl:text-lg">
@@ -108,7 +108,7 @@ const ArtifactSetDisplay = ({
                   return (
                     <div className="flex flex-row items-center gap-2" key={i}>
                       <div className="flex-shrink-0 font-semibold">
-                        {piecesNeeded}-Piece:
+                        {t(`ui.common.artifact.${piecesNeeded}PieceBonus`)}:
                       </div>
                       <div className="whitespace-pre-wrap leading-snug select-text">
                         {t(`dm.${bonusInfo.descHash}`)}

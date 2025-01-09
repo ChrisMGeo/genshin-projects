@@ -48,7 +48,9 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
           ))}
         </div>
-        <h2 className="mb-2 text-3xl">Passive</h2>
+        <h2 className="mb-2 text-3xl">
+          {t("ui.common.character.passive.singular")}
+        </h2>
         <div className="grid gap-4 lg:col-start-1 lg:grid-cols-2 xl:col-span-6 xl:grid-cols-2">
           {character.passives.map((s, i) => (
             <div key={i} className="relative flex flex-col">

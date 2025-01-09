@@ -14,7 +14,6 @@ import {
   weaponStatCurves,
 } from "@repo/gi-data/weapon-info";
 import UnityRichTextComponent from "@repo/unity-richtext-react/component";
-import { capitalizeFirstLetter } from "@repo/utils/capitalize-first-letter";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { DeepReadonly } from "next/dist/shared/lib/deep-readonly";
@@ -86,7 +85,9 @@ const WeaponDisplay = ({
         <div className="flex flex-col">
           <div className="flex flex-col pt-4 pl-4">
             <div>
-              <div className="text-lg">{capitalizeFirstLetter(weaponType)}</div>
+              <div className="text-lg">
+                {t(`ui.common.weapon.${weaponType}.singular`)}
+              </div>
               <div>
                 <div className="text-opacity-70 md:text-lg lg:text-lg xl:text-xl">
                   {t(`dm.${fightPropsInfo["FIGHT_PROP_BASE_ATTACK"]}`)}

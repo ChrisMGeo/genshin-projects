@@ -12,7 +12,9 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div className="mx-2.5 md:mx-0 lg:mx-0 xl:mx-0 rounded-2xl xl:mt-0 col-span-full xl:col-start-3">
       <div>
-        <h2 className="mb-2 text-3xl">Constellation</h2>
+        <h2 className="mb-2 text-3xl">
+          {t("ui.common.character.constellation.plural")}
+        </h2>
         <div className="grid gap-4 lg:col-start-1 lg:grid-cols-2 xl:col-span-6 xl:grid-cols-3">
           {character.constellations.map((c, i) => (
             <div key={i} className="relative flex flex-col">

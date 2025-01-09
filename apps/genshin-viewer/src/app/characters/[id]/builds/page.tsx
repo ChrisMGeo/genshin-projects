@@ -19,6 +19,7 @@ const CharacterBuildPage = ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
+  const t = useTranslations();
   const { id: _id } = use(params);
   const id = _id as CharacterKey;
   //   const character = characterInfo.characterMap[id];
@@ -45,7 +46,10 @@ const CharacterBuildPage = ({
                         </div>
                         <div className="flex flex-col gap-4">
                           <div className="flex flex-col gap-0.5">
-                            <div className="font-bold"> • Best Weapon(s)</div>
+                            <div className="font-bold">
+                              {" "}
+                              • {t("ui.common.weapon.plural")}
+                            </div>
                             <div className="whitespace-pre-wrap select-text flex flex-col">
                               {build.weapons.map((weaponKey, i) => {
                                 return (
@@ -59,7 +63,7 @@ const CharacterBuildPage = ({
                           <div className="flex flex-col gap-0.5">
                             <div className="font-bold">
                               {" "}
-                              • Best Artifact Set(s)
+                              • {t("ui.common.artifact.plural")}
                             </div>
                             <div className="whitespace-pre-wrap select-text flex flex-col">
                               {build.artifactSets.map(

@@ -112,7 +112,7 @@ const CharacterStatsDisplay = ({
           <tbody>
             <tr>
               <td className="flex flex-row items-center gap-2">
-                <span>Ascend</span>
+                <span>{t("ui.common.ascend")}</span>
               </td>
               <td className="text-right">
                 <input
@@ -164,7 +164,7 @@ const CharacterStatsDisplay = ({
         <table className="stat-table hover w-full">
           <tbody>
             <tr>
-              <td>Element</td>
+              <td>{t("ui.common.element.singular")}</td>
               <td className="text-right">
                 <Image
                   src={`https://gi.yatta.moe/assets/UI/${getVisionIcon(vision)}.png`}
@@ -177,7 +177,7 @@ const CharacterStatsDisplay = ({
               </td>
             </tr>
             <tr>
-              <td>Weapon</td>
+              <td>{t("ui.common.weapon.singular")}</td>
               <td className="text-right">
                 <Image
                   src={`https://gi.yatta.moe/assets/UI/${getWeaponTypeIcon(weaponType)}.png`}
@@ -190,7 +190,7 @@ const CharacterStatsDisplay = ({
               </td>
             </tr>
             <tr>
-              <td>Constellation</td>
+              <td>{t("ui.common.character.constellation.singular")}</td>
               <td className="text-right">{constellation}</td>
             </tr>
           </tbody>

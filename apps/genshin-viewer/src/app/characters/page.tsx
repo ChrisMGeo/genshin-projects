@@ -19,7 +19,7 @@ const CharacterView = ({
   character: DeepReadonly<CharacterInfo>;
 }) => {
   const t = useTranslations();
-  const enName = t(`dm.${character.nameHash}`);
+  const name = t(`dm.${character.nameHash}`);
   return (
     <Link
       prefetch
@@ -30,10 +30,10 @@ const CharacterView = ({
         src={`https://gi.yatta.moe/assets/UI/${character.icon}.png`}
         height="128"
         width="128"
-        alt={`Character Icon for ${enName}.`}
+        alt={`Character Icon for ${name}.`}
       />
       <div className="flex flex-col">
-        <h1>{enName}</h1>
+        <h1>{name}</h1>
       </div>
     </Link>
   );

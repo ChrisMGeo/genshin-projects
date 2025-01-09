@@ -31,8 +31,14 @@ export default function CharacterPageLayout({
   const title = t(`dm.${character.titleHash}`);
   const characterLinks: { title: string; href: string }[] = [
     { title: "Profile", href: `${baseLink}` },
-    { title: "Talent", href: `${baseLink}/talent` },
-    { title: "Constellation", href: `${baseLink}/constellation` },
+    {
+      title: t("ui.common.character.talent.singular"),
+      href: `${baseLink}/talent`,
+    },
+    {
+      title: t("ui.common.character.constellation.singular"),
+      href: `${baseLink}/constellation`,
+    },
     { title: "Builds", href: `${baseLink}/builds` },
   ];
   return (
