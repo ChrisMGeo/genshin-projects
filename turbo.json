@@ -22,6 +22,7 @@
       "outputs": ["../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "gen-gi-helper-data#generate-files": {
+      "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "env": [
         "GOOGLEAPIS_TYPE",
@@ -37,6 +38,24 @@
       ],
       "dependsOn": ["gen-gi-data#generate-files", "@repo/gi-data#build"],
       "outputs": ["../../packages/gi-helper-data/src/builds.ts"]
+    },
+    "gen-genshin-viewer-locales#generate-files": {
+      "cache": false,
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "env": [
+        "GOOGLEAPIS_TYPE",
+        "GOOGLEAPIS_PROJECT_ID",
+        "GOOGLEAPIS_PRIVATE_KEY_ID",
+        "GOOGLEAPIS_PRIVATE_KEY",
+        "GOOGLEAPIS_CLIENT_EMAIL",
+        "GOOGLEAPIS_CLIENT_ID",
+        "GOOGLEAPIS_AUTH_URI",
+        "GOOGLEAPIS_TOKEN_URI",
+        "GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL",
+        "GOOGLEAPIS_CLIENT_X509_CERT_URL"
+      ],
+      "dependsOn": ["@repo/utils#build"],
+      "outputs": ["../../apps/genshin-viewer/messages/*.json"]
     },
     "lint": {
       "dependsOn": ["^lint"]

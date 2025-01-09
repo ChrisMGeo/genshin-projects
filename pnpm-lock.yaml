@@ -21,6 +21,25 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
 
+  apps/gen-genshin-viewer-locales:
+    dependencies:
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      googleapis:
+        specifier: ^144.0.0
+        version: 144.0.0
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+      typescript:
+        specifier: latest
+        version: 5.7.3
+
   apps/gen-gi-data:
     dependencies:
       '@repo/gi-data':
@@ -6962,6 +6981,12 @@ packages:
 
   /typescript@5.7.2:
     resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true
+
+  /typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
