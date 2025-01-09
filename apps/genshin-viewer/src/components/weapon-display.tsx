@@ -89,7 +89,7 @@ const WeaponDisplay = ({
               <div className="text-lg">{capitalizeFirstLetter(weaponType)}</div>
               <div>
                 <div className="text-opacity-70 md:text-lg lg:text-lg xl:text-xl">
-                  Base ATK
+                  {t(`dm.${fightPropsInfo["FIGHT_PROP_BASE_ATTACK"]}`)}
                 </div>
                 <div className="text-xl lg:text-2xl xl:text-3xl">
                   {Math.round(finalAtk)}
