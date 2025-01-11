@@ -12,10 +12,12 @@
     "generate-everything": "turbo generate-files"
   },
   "devDependencies": {
-    "@types/node": "^22.9.3",
+    "@types/node": "^22.10.5",
+    "googleapis": "^144.0.0",
     "prettier": "^3.2.5",
+    "tsx": "^4.19.2",
     "turbo": "^2.3.3",
-    "typescript": "5.5.4"
+    "typescript": "5.7.3"
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {

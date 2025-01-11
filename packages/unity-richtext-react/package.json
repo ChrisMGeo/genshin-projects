@@ -12,11 +12,9 @@
         "@repo/eslint-config": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@types/eslint": "^9.6.1",
-        "@types/node": "^22.10.2",
         "@types/react": "^19",
         "@types/react-dom": "^19",
-        "eslint": "^9",
-        "typescript": "^5.7.2"
+        "eslint": "^9"
     },
     "dependencies": {
         "react": "^19.0.0",

@@ -90,9 +90,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@turbo/gen": "^1.12.4",
     "json-to-ts": "^2.1.0",
-    "typescript": "latest",
     "vitest": "^2.1.8"
   }
 }

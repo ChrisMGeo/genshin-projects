@@ -9,9 +9,6 @@
     "@repo/utils": "workspace:*"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "googleapis": "^144.0.0",
-    "tsx": "^4.19.2",
-    "typescript": "latest"
+    "@repo/typescript-config": "workspace:*"
   }
 }
