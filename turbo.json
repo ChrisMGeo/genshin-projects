@@ -8,17 +8,21 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "@repo/gi-data#build": {
-      "dependsOn": ["gen-gi-data-types#generate-files"]
+      "dependsOn": ["gen-gi-data-types#generate-files"],
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": ["dist/**"]
     },
     "generate-files": {
       "dependsOn": ["^generate-files"]
     },
     "gen-gi-data-types#generate-files": {
       "dependsOn": ["@repo/utils#build"],
+      "inputs": ["$TURBO_DEFAULT$", "../../packages/gi-data/AnimeGameData/**"],
       "outputs": ["../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "gen-gi-data#generate-files": {
       "dependsOn": ["gen-gi-data-types#generate-files", "@repo/gi-data#build"],
+      "inputs": ["$TURBO_DEFAULT$", "../../packages/gi-data/dist/**"],
       "outputs": [
         "../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**",
         "../../packages/gi-data/dist/generated/**", "!../../packages/gi-data/dist/generated/excel-bin-output/**"
