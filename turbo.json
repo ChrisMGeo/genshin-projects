@@ -36,7 +36,7 @@
         "GOOGLEAPIS_AUTH_PROVIDER_X509_CERT_URL",
         "GOOGLEAPIS_CLIENT_X509_CERT_URL"
       ],
-      "dependsOn": ["gen-gi-data#generate-files", "@repo/gi-data#build"],
+      "dependsOn": ["gen-gi-data#generate-files"],
       "outputs": ["../../packages/gi-helper-data/src/builds.ts"]
     },
     "gen-genshin-viewer-locales#generate-files": {
