@@ -11,7 +11,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col border-opacity-20 lg:border-r-2 lg:pr-4">
-          GitHub Repo:
+          {t("githubRepoText")}
           <div className="flex flex-row items-center">
             <Link href="https://github.com/ChrisMGeo/genshin-projects/tree/main/apps/genshin-viewer">
               <span>
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col pr-4">
-          Made with:
+          {t("madeWithText")}
           <div className="flex flex-row items-center">
             <Link className="px-1" href="https://nextjs.org/">
               <svg
