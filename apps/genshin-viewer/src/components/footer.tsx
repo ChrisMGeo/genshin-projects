@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 const Footer = () => {
-  const t = useTranslations("footer");
+  const t = useTranslations("ui.footer");
   return (
     <footer className="mt-auto mb-14 select-none px-4 py-4 md:mb-0 md:pl-28 lg:mb-0 lg:pl-28 bg-white">
       <div className="flex flex-col gap-4 lg:flex-row">
