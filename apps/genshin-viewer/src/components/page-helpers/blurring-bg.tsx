@@ -19,7 +19,7 @@ const BlurringBackground = ({
   return (
     <div
       className={clsx(
-        !pathname.endsWith(`/${id}`)
+        pathname !== `/characters/${id}`
           ? "blur-xl filter xl:opacity-10"
           : "xl:opacity-100",
         "lg:opacity-10 fixed inset-0 -z-1 hidden bg-fixed opacity-10 transition-opacity duration-200 ease-out md:block lg:block xl:block"
