@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "generate-files": "tsx src/index.ts"
+    "generate-files": "tsx src/index.ts && pnpm --filter @repo/gi-data run build"
   },
   "dependencies": {
     "@repo/utils": "workspace:*"
