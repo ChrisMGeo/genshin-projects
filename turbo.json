@@ -7,6 +7,9 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "@repo/gi-data#build": {
+      "dependsOn": ["gen-gi-data-types#generate-files"]
+    },
     "generate-files": {
       "dependsOn": ["^generate-files"]
     },
@@ -15,7 +18,7 @@
       "outputs": ["../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "gen-gi-data#generate-files": {
-      "dependsOn": ["gen-gi-data-types#generate-files"],
+      "dependsOn": ["gen-gi-data-types#generate-files", "@repo/gi-data#build"],
       "outputs": ["../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "gen-gi-helper-data#generate-files": {
