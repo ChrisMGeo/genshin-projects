@@ -19,7 +19,10 @@
     },
     "gen-gi-data#generate-files": {
       "dependsOn": ["gen-gi-data-types#generate-files", "@repo/gi-data#build"],
-      "outputs": ["../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**", "../../packages/gi-data/dist/generated/**", "!../../packages/gi-data/dist/generated/excel-bin-output/**"]
+      "outputs": [
+        "../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**",
+        "../../packages/gi-data/dist/generated/**", "!../../packages/gi-data/dist/generated/excel-bin-output/**"
+      ]
     },
     "gen-gi-helper-data#generate-files": {
       "cache": false,
