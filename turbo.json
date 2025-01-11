@@ -15,7 +15,7 @@
       "outputs": ["../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "gen-gi-data#generate-files": {
-      "dependsOn": ["gen-gi-data-types#generate-files", "@repo/gi-data#build"],
+      "dependsOn": ["gen-gi-data-types#generate-files"],
       "outputs": ["../../packages/gi-data/src/generated/**", "!../../packages/gi-data/src/generated/excel-bin-output/**"]
     },
     "gen-gi-helper-data#generate-files": {
