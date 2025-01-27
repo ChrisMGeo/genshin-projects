@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { GIUTSLanguage, giUTSLanguages } from "@repo/gi-data/languages";
 import SideBar from "@/components/sidebar";
 import Footer from "@/components/footer";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 // import LocaleSwitcher from "@/components/locale-switcher";
 
 export const metadata: Metadata = {
@@ -33,6 +35,8 @@ export default async function RootLayout({
             <Footer />
           </div>
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

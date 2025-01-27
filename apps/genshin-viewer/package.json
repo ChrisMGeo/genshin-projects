@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/gi-helper-data": "workspace:*",
     "@repo/gi-data": "workspace:*",
-    "@repo/utils": "workspace:*",
+    "@repo/gi-helper-data": "workspace:*",
     "@repo/unity-richtext-react": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "clsx": "^2.1.1",
     "next": "15.1.0",
     "next-intl": "^3.26.1",
