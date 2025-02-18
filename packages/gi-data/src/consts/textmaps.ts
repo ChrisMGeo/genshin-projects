@@ -9,7 +9,7 @@ export const giTextMapSplits: { [key in GILanguage]?: number } = {
 };
 
 const getTextMapPath = (lang: GILanguage, num?: number) => {
-  if (num) return `TextMap/TextMap${lang}_${num}.json`;
+  if (num !== undefined) return `TextMap/TextMap${lang}_${num}.json`;
   else return `TextMap/TextMap${lang}.json`;
 };
 
