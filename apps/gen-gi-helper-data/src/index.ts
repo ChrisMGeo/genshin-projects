@@ -155,17 +155,17 @@ async function main() {
   if (!valueRanges) return;
   for (let i = 0; i < valueRanges.length; i++) {
     const bRow = valueRanges[i]!.values;
-    let lastJ = 0;
+    let lastJ: number[] = [];
     if (!bRow) continue;
     for (let j = 0; j < bRow.length; j++) {
       const cell: string = bRow[j]![0];
       if (!cell) continue;
       if (!cell.toLowerCase().includes("notes")) {
-        lastJ = j;
+        lastJ.push(j);
       } else {
-        const characterRange: string = `${sheetNames[i]}!B${j + 1}:I${
-          lastJ + 1
-        }`;
+        const characterRange: string = `${sheetNames[i]}!B${j + 1}:I${lastJ[lastJ.length - 2]!
+          + 1}`;
+        console.log(characterRange);
         characterRanges.push(characterRange);
       }
     }
@@ -200,9 +200,9 @@ async function main() {
       ? characterValues.values.slice(-1)[0]![1]
       : "";
     if (!characterValues.values) continue;
-    let initialBuildRow = 4; // 2 rows for name + 2 for role
+    let initialBuildRow = 5; // 2 rows for name + 2 for role + 1 for last updated
     if (id === "Mavuika") {
-      initialBuildRow = 3; // Has only 1 row for name
+      initialBuildRow = 4; // Has only 1 row for name
     }
     for (
       let build = initialBuildRow;
