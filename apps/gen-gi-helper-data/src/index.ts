@@ -47,13 +47,13 @@ type CharacterBuild = {
   artifactSets: (
     | { type: "single"; option: ArtifactSetChoice }
     | {
-        type: "choose-2";
-        options: ArtifactSetChoice[];
-      }
+      type: "choose-2";
+      options: ArtifactSetChoice[];
+    }
     | {
-        type: "double";
-        options: [ArtifactSetChoice, ArtifactSetChoice];
-      }
+      type: "double";
+      options: [ArtifactSetChoice, ArtifactSetChoice];
+    }
   )[];
   artifactMainStats: { sands?: string; goblet?: string; circlet?: string };
   artifactSubStats: string;
