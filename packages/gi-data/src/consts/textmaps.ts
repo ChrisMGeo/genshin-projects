@@ -17,7 +17,7 @@ export const getTextMap = (lang: GILanguage) => {
   const splitEntry = giTextMapSplits[lang];
   let res: GITextMap = {};
   if (splitEntry) {
-    for (let i = 1; i <= splitEntry; i++) {
+    for (let i = 0; i < splitEntry; i++) {
       const textMapPath = getTextMapPath(lang, i);
       res = { ...res, ...JSON.parse(readDMJSON(textMapPath)) };
     }
