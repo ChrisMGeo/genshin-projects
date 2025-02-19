@@ -30,6 +30,7 @@ const GI_HELPER_DATA_FINAL_PATH = path.join(
 const enTextMap = getTextMap("EN");
 
 type UnmodifiedCharacterBuild = {
+  name: string;
   weapons: string;
   artifactSets: string;
   artifactMainStats: string;
@@ -227,7 +228,7 @@ async function main() {
       builds.push(buildObject);
     }
     const relevantArtifactTypes = ["sands", "goblet", "circlet"] as const;
-    const modifiedBuilds: CharacterBuild[] = builds.map(
+    const modifiedBuilds: CharacterBuild[] = builds.filter(b => b.name).map(
       ({
         weapons: _weapons,
         artifactSets,
