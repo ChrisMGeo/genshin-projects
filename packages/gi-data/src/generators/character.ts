@@ -340,7 +340,7 @@ export const getAvatarPromoteInfo = (): AvatarPromoteMap => {
   let res: AvatarPromoteMap = {};
   for (const {
     avatarPromoteId: promoteId,
-    promoteLevel = 0,
+    AKPHFJACMIB: promoteLevel = 0,
     addProps,
   } of AvatarPromote) {
     const { value: hpValue = 0 } = addProps.find(
