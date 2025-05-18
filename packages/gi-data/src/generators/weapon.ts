@@ -167,7 +167,7 @@ export const getWeaponPromoteInfo = (): WeaponPromoteMap => {
   let res: WeaponPromoteMap = {};
   for (const {
     weaponPromoteId: promoteId,
-    AKPHFJACMIB: promoteLevel = 0,
+    promoteLevel = 0,
     addProps,
   } of WeaponPromote) {
     const { value: atkValue = 0 } = addProps.find(
