@@ -10,11 +10,12 @@ const CharacterViewPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id: _id } = use(params);
   const id = _id as CharacterKey;
   const character = characterInfo.characterMap[id];
-  const combatSkills = [
+  if ("energySkill" in character) {}
+  const combatSkills = ("energySkill" in character) ? [
     ...character.skills.slice(0, 2),
     character.energySkill,
     ...character.skills.slice(2),
-  ];
+  ] : character.skills;
   return (
     <div className="mx-2.5 md:mx-0 lg:mx-0 xl:mx-0 rounded-2xl xl:mt-0 col-span-full xl:col-start-3">
       <div>

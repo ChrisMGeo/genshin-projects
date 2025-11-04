@@ -6,6 +6,7 @@ export const giVisionConversionMap = {
   Anemo: "anemo",
   Geo: "geo",
   Dendro: "dendro",
+  None: "none"
 } as const;
 
 export type GIVisionInGame = keyof typeof giVisionConversionMap;

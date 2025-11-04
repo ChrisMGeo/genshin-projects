@@ -42,7 +42,7 @@ export type CharacterInfo = {
   constellationHash: number;
 
   constellations: ConstellationInfo[];
-  energySkill: SkillInfo;
+  energySkill?: SkillInfo;
   passives: SkillInfo[];
   skills: SkillInfo[];
 
