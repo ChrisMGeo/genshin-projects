@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+if (process.env.VERCEL !== '1') {
+  dotenv.config();
+}
 import path from "path";
 import { google } from "googleapis";
 import { writeFileSyncRecursive } from "@repo/utils/fs";
